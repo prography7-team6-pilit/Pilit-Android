@@ -1,7 +1,8 @@
-package com.prography.pilit
+package com.prography.pilit.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.prography.pilit.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
