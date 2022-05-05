@@ -5,7 +5,9 @@
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_add.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_add_pill.xml" value="0.18090452261306533" />
         <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.13518518518518519" />
+        <entry key="app/src/main/res/layout/fragment_pill_list.xml" value="0.18478260869565216" />
         <entry key="app/src/main/res/menu/menu_bottom.xml" value="0.1" />
       </map>
     </option>
