@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Pilit</string>
+    <string name="menu_pill_list">list</string>
+    <string name="menu_pill_add">add</string>
+    <string name="menu_calendar">calendar</string>
+    <string name="hello_blank_fragment">hello blank fragment</string>
 </resources>
