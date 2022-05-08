@@ -1,13 +1,293 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.fragment.AddPillFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+            <TextView
+                android:id="@+id/tv_add_pill_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_pill_title"
+                android:textColor="@color/black"
+                android:textSize="17dp"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/view_add_pill_title_bar"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="12dp"
+                android:background="@color/line_default_stroke"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_add_pill_title" />
+
+            <TextView
+                android:id="@+id/tv_add_pill_medicine_name_subheading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/add_pill_medicine_name_subheading"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_add_pill_title_bar" />
+
+            <EditText
+                android:id="@+id/et_add_pill_medicine_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_border_edittext"
+                android:hint="@string/add_pill_medicine_name_hint"
+                android:textColor="@color/black"
+                android:inputType="text"
+                android:textSize="15dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_add_pill_medicine_name_subheading" />
+
+            <TextView
+                android:id="@+id/tv_add_pill_medicine_information"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:textColor="@color/add_pill_medicine_information_text"
+                android:maxLines="3"
+                android:ellipsize="end"
+                android:layout_marginTop="12dp"
+                android:layout_marginHorizontal="20dp"
+                app:layout_constraintTop_toBottomOf="@id/et_add_pill_medicine_name"
+                app:layout_constraintBottom_toTopOf="@id/tv_add_pill_intake_time_subheading"
+                tools:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_add_pill_intake_time_subheading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="36dp"
+                android:text="@string/add_pill_intake_time_subheading"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_add_pill_medicine_information" />
+
+            <TextView
+                android:id="@+id/tv_add_pill_intake_time_alarm_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="14dp"
+                android:text="@string/add_pill_default_alarm_time"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_add_pill_intake_time_subheading" />
+
+            <ImageView
+                android:id="@+id/iv_add_pill_intake_time_setting"
+                android:layout_width="17dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/ic_chevron_right"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_add_pill_intake_time_subheading" />
+
+            <View
+                android:id="@+id/view_add_pill_intake_time_horizontal_line"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/line_default_stroke"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_add_pill_intake_time_alarm_time" />
+
+            <TextView
+                android:id="@+id/tv_add_pill_repetition_subheading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="36dp"
+                android:text="@string/add_pill_repetition_subheading"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view_add_pill_intake_time_horizontal_line" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_add_pill_repetition_week"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="14dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_add_pill_repetition_subheading">
+
+                <CheckBox
+                    android:id="@+id/cb_add_pill_repetition_option_sun"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_repetition_week_checkbox"
+                    android:button="@android:color/transparent"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:paddingHorizontal="14dp"
+                    android:paddingVertical="10dp"
+                    android:text="@string/add_pill_repetition_option_sun"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <CheckBox
+                    android:id="@+id/cb_add_pill_repetition_option_mon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_repetition_week_checkbox"
+                    android:button="@android:color/transparent"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:paddingHorizontal="14dp"
+                    android:paddingVertical="10dp"
+                    android:text="@string/add_pill_repetition_option_mon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/cb_add_pill_repetition_option_tue"
+                    app:layout_constraintStart_toEndOf="@id/cb_add_pill_repetition_option_sun"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <CheckBox
+                    android:id="@+id/cb_add_pill_repetition_option_tue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_repetition_week_checkbox"
+                    android:button="@android:color/transparent"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:paddingHorizontal="14dp"
+                    android:paddingVertical="10dp"
+                    android:text="@string/add_pill_repetition_option_tue"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/cb_add_pill_repetition_option_wed"
+                    app:layout_constraintStart_toEndOf="@id/cb_add_pill_repetition_option_mon"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <CheckBox
+                    android:id="@+id/cb_add_pill_repetition_option_wed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_repetition_week_checkbox"
+                    android:button="@android:color/transparent"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:paddingHorizontal="14dp"
+                    android:paddingVertical="10dp"
+                    android:text="@string/add_pill_repetition_option_wed"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/cb_add_pill_repetition_option_thu"
+                    app:layout_constraintStart_toEndOf="@id/cb_add_pill_repetition_option_tue"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <CheckBox
+                    android:id="@+id/cb_add_pill_repetition_option_thu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_repetition_week_checkbox"
+                    android:button="@android:color/transparent"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:paddingHorizontal="14dp"
+                    android:paddingVertical="10dp"
+                    android:text="@string/add_pill_repetition_option_thu"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/cb_add_pill_repetition_option_fri"
+                    app:layout_constraintStart_toEndOf="@id/cb_add_pill_repetition_option_wed"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <CheckBox
+                    android:id="@+id/cb_add_pill_repetition_option_fri"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_repetition_week_checkbox"
+                    android:button="@android:color/transparent"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:paddingHorizontal="14dp"
+                    android:paddingVertical="10dp"
+                    android:text="@string/add_pill_repetition_option_fri"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/cb_add_pill_repetition_option_sat"
+                    app:layout_constraintStart_toEndOf="@id/cb_add_pill_repetition_option_thu"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <CheckBox
+                    android:id="@+id/cb_add_pill_repetition_option_sat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_repetition_week_checkbox"
+                    android:button="@android:color/transparent"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:paddingHorizontal="14dp"
+                    android:paddingVertical="10dp"
+                    android:text="@string/add_pill_repetition_option_sat"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/tv_add_pill_push_subheading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="36dp"
+                android:text="@string/add_pill_push_subheading"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cl_add_pill_repetition_week" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_add_pill_push"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_add_pill_push_subheading"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_add_pill_push_subheading" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="60dp"
+                android:background="@drawable/selector_complete_button"
+                android:enabled="false"
+                android:paddingVertical="13dp"
+                android:text="@string/complete"
+                android:textColor="@drawable/selector_complete_button_text"
+                android:textSize="16dp"
+                app:layout_constraintTop_toTopOf="@id/tv_add_pill_push_subheading" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
