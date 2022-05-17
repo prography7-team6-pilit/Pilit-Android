@@ -3,11 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/bg_calendar_today.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/bg_pill_all_eaten.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/calendar_complete_text.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_bg_pill_all_eaten.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_bg_pill_part_eaten.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/calendar_day_layout.xml" value="0.2783660888671875" />
+        <entry key="app/src/main/res/layout/calendar_day_legend.xml" value="0.15677083333333333" />
+        <entry key="app/src/main/res/layout/calendar_help_balloon.xml" value="0.23125" />
         <entry key="app/src/main/res/layout/fragment_add.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_add_pill.xml" value="0.18090452261306533" />
-        <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.13518518518518519" />
+        <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_pill_list.xml" value="0.18478260869565216" />
+        <entry key="app/src/main/res/layout/item_calendar_day.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/item_calendar_header.xml" value="0.15677083333333333" />
+        <entry key="app/src/main/res/layout/item_calendar_record.xml" value="0.165" />
         <entry key="app/src/main/res/menu/menu_bottom.xml" value="0.1" />
       </map>
     </option>

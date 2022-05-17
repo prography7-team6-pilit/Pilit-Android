@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="SpUsage"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="20dp"
+    android:paddingBottom="12dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/tv_help_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tooltip_content"
+        android:textColor="@color/black"
+        android:textSize="13dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="61dp"
+        android:layout_marginEnd="61dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_pilo_press"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="9dp"
+        android:src="@drawable/ic_btn_pill_press"
+        android:contentDescription="@string/description_tooltip_eaten"
+        app:layout_constraintEnd_toStartOf="@+id/iv_pilo_normal"
+        app:layout_constraintStart_toStartOf="@+id/tv_help_content"
+        app:layout_constraintTop_toBottomOf="@+id/tv_help_content" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tooltip_eaten"
+        android:textSize="10dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@id/iv_pilo_press"
+        app:layout_constraintStart_toStartOf="@id/iv_pilo_press"
+        app:layout_constraintEnd_toEndOf="@id/iv_pilo_press"/>
+
+    <ImageView
+        android:id="@+id/iv_pilo_normal"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="9dp"
+        android:src="@drawable/ic_btn_pill_normal"
+        android:contentDescription="@string/description_tooltip_not_eaten"
+        app:layout_constraintEnd_toEndOf="@+id/tv_help_content"
+        app:layout_constraintStart_toEndOf="@+id/iv_pilo_press"
+        app:layout_constraintTop_toBottomOf="@+id/tv_help_content" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tooltip_not_eaten"
+        android:textSize="10dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@id/iv_pilo_normal"
+        app:layout_constraintStart_toStartOf="@id/iv_pilo_normal"
+        app:layout_constraintEnd_toEndOf="@id/iv_pilo_normal"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
