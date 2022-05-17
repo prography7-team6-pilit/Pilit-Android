@@ -2,11 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/item_pill_list"
+        android:icon="@drawable/selector_menu_icon_pill_list"
         android:title="@string/menu_pill_list" />
     <item
         android:id="@+id/item_pill_add"
+        android:icon="@drawable/selector_menu_icon_pill_add"
         android:title="@string/menu_pill_add" />
     <item
         android:id="@+id/item_calendar"
+        android:icon="@drawable/selector_menu_icon_calender"
         android:title="@string/menu_calendar" />
 </menu>

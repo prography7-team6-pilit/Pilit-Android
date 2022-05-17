@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
             }
         )
 
+        mainBinding.bottomNavigation.itemIconTintList = null
         mainBinding.bottomNavigation.run {
             setOnItemSelectedListener { item ->
                 when(item.itemId) {

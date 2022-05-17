@@ -13,4 +13,24 @@
         <item name="android:statusBarColor" tools:targetApi="l">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
+
+    <style name="BorderEditText" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/edittext_default_stroke</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="cornerRadius">4dp</item>
+        <item name="colorError">@color/edittext_error_stroke</item>
+        <item name="hintEnabled">false</item>
+    </style>
+
+    <style name="TextInputEditTextStyle">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">15dp</item>
+        <item name="backgroundColor">@color/white</item>
+    </style>
+
+    <style name="DefaultSwitchStyle" parent="TextAppearance.AppCompat.Widget.Switch">
+        <item name="android:switchMinWidth">32dp</item>
+        <item name="android:thumb">@drawable/shape_default_switch_thumb</item>
+        <item name="track">@drawable/selector_default_switch_track</item>
+    </style>
 </resources>

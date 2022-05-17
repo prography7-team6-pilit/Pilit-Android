@@ -5,22 +5,30 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+    <color name="red_500">#FF5D5D</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
     <!-- Line colors -->
-    <color name="line_default_stroke">#33000000</color>
+    <color name="line_default_stroke">#1A000000</color>
 
     <!-- textview colors -->
     <color name="add_pill_medicine_information_text">#80000000</color>
 
     <!-- button colors -->
-    <color name="button_enable_false">#4D000000</color>
+    <color name="button_enable_false">#66FF5D5D</color>
 
     <!-- edittext colors -->
+    <color name="edittext_cursor">#426BF2</color>
     <color name="edittext_default_stroke">#33000000</color>
+    <color name="edittext_error_stroke">#FF0000</color>
 
     <!-- checkbox colors -->
+    <color name="checkbox_checked_false">#66000000</color>
+
+    <!-- switch colors -->
+    <color name="switch_checked_false">#E6E6E6</color>
+
     <color name="checkbox_default_stroke">#4D000000</color>
     <color name="transparent">#00000000</color>
 </resources>
