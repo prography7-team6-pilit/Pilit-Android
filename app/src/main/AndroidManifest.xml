@@ -11,15 +11,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Pilit">
         <activity
-            android:name=".presentation.activity.MainActivity"
-            android:windowSoftInputMode="adjustPan"
+            android:name=".presentation.activity.JoinActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".presentation.activity.MainActivity"
+            android:windowSoftInputMode="adjustPan"/>
     </application>
 
 </manifest>
