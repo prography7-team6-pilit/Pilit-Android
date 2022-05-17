@@ -18,7 +18,7 @@
         <item name="boxStrokeColor">@color/edittext_default_stroke</item>
         <item name="boxStrokeWidth">1dp</item>
         <item name="cornerRadius">4dp</item>
-        <item name="colorError">@color/edittext_error_stroke</item>
+        <item name="colorError">@color/edittext_error</item>
         <item name="hintEnabled">false</item>
     </style>
 
