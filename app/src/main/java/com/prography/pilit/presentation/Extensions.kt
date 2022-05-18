@@ -7,7 +7,7 @@ import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import java.time.DayOfWeek
 import java.time.temporal.WeekFields
-import java.util.*
+import java.util.Locale
 
 fun daysOfWeekFromLocale(): Array<DayOfWeek> {
     val firstDayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek
@@ -29,7 +29,6 @@ fun View.makeVisible() {
 fun View.makeInVisible() {
     visibility = View.INVISIBLE
 }
-
 
 internal fun Context.getColorCompat(@ColorRes color: Int) = ContextCompat.getColor(this, color)
 

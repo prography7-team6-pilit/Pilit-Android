@@ -41,7 +41,6 @@ class CalendarRecordAdapter(
                 else {
                     binding.btnEat.setBackgroundResource(R.drawable.ic_pill_press)
                 }
-
             }
         }
     }
