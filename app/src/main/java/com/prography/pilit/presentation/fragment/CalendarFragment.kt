@@ -14,10 +14,13 @@ import com.kizitonwose.calendarview.model.DayOwner
 import com.kizitonwose.calendarview.ui.DayBinder
 import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder
 import com.kizitonwose.calendarview.ui.ViewContainer
+import com.kizitonwose.calendarview.utils.next
+import com.kizitonwose.calendarview.utils.previous
 import com.prography.pilit.R
 import com.prography.pilit.databinding.CalendarDayLayoutBinding
 import com.prography.pilit.databinding.FragmentCalendarBinding
 import com.prography.pilit.databinding.ItemCalendarHeaderBinding
+import com.prography.pilit.presentation.activity.MainActivity
 import com.prography.pilit.presentation.adapter.CalendarRecordAdapter
 import com.prography.pilit.presentation.makeInVisible
 import com.prography.pilit.presentation.makeVisible
@@ -47,7 +50,7 @@ class CalendarFragment : Fragment() {
     private var selectedDate: LocalDate? = null
 
     private val adapter by lazy {
-        CalendarRecordAdapter()
+        CalendarRecordAdapter(this::eatPill)
     }
 
     override fun onCreateView(
@@ -65,7 +68,7 @@ class CalendarFragment : Fragment() {
         initRecyclerView()
 
         val balloon = Balloon.Builder(requireContext())
-            .setLayout(R.layout.calendar_help_balloon)
+            .setLayout(R.layout.calendar_tooltip)
             .setArrowSize(0)
             .setBackgroundDrawableResource(R.drawable.bg_calendar_tooltip)
             .setArrowOrientation(ArrowOrientation.BOTTOM)
@@ -111,6 +114,8 @@ class CalendarFragment : Fragment() {
         binding.calendarView.scrollToMonth(currentMonth)
         viewModel.getMonthlyPillList(currentMonth.year, currentMonth.month.value)
 
+        //viewModel.getAlertList()
+
         binding.calendarView.dayBinder = object : DayBinder<DayViewContainer> {
             // Called only when a new container is needed.
             override fun create(view: View) = DayViewContainer(view)
@@ -120,6 +125,7 @@ class CalendarFragment : Fragment() {
 
                 val textView = container.textView
                 val dotView = container.dotView
+                container.day = day
 
                 textView.text = day.date.dayOfMonth.toString()
 
@@ -161,6 +167,7 @@ class CalendarFragment : Fragment() {
             }
         }
 
+
         binding.calendarView.monthHeaderBinder =
             object : MonthHeaderFooterBinder<MonthViewContainer> {
                 override fun create(view: View) = MonthViewContainer(view)
@@ -171,9 +178,33 @@ class CalendarFragment : Fragment() {
                 }
             }
 
-        viewModel.alertListData.observe(viewLifecycleOwner) {
-            adapter.submitList(it)
+        binding.ivNextMonth.setOnClickListener {
+            binding.calendarView.findFirstVisibleMonth()?.let {
+                binding.calendarView.smoothScrollToMonth(it.yearMonth.next)
+            }
         }
+
+        binding.ivPreviousMonth.setOnClickListener {
+            binding.calendarView.findFirstVisibleMonth()?.let {
+                binding.calendarView.smoothScrollToMonth(it.yearMonth.previous)
+            }
+        }
+
+        binding.layoutEmpty.btnAddAlert.setOnClickListener {
+            (requireActivity() as MainActivity).moveToFragment(1)
+        }
+
+        viewModel.alertListData.observe(viewLifecycleOwner) {
+            if (it.isEmpty()) {
+                binding.recyclerView.visibility = View.GONE
+                binding.layoutEmpty.root.visibility = View.VISIBLE
+            } else {
+                binding.recyclerView.visibility = View.VISIBLE
+                binding.layoutEmpty.root.visibility = View.GONE
+                adapter.submitList(it)
+            }
+        }
+        viewModel.getAlertList(2022, 5, 18)
     }
 
     private fun initRecyclerView() {
@@ -195,6 +226,10 @@ class CalendarFragment : Fragment() {
             binding.calendarView.notifyDateChanged(date)
 //            updateAdapterForDate(date)
         }
+    }
+
+    private fun eatPill(alertId: Int) {
+        viewModel.postTakingLogs(alertId)
     }
 //    private fun updateAdapterForDate(date: LocalDate) {
 //        eventsAdapter.apply {

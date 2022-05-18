@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/iv_btn_left"
+        android:id="@+id/iv_previous_month"
         android:layout_width="16dp"
         android:layout_height="16dp"
         android:layout_marginEnd="14dp"
@@ -13,7 +14,7 @@
         app:layout_constraintTop_toTopOf="@+id/tv_calendar_title"
         app:layout_constraintBottom_toBottomOf="@+id/tv_calendar_title"
         app:layout_constraintEnd_toStartOf="@+id/tv_calendar_title"
-        app:srcCompat="@drawable/ic_btn_left" />
+        app:srcCompat="@drawable/ic_chevron_left" />
 
     <TextView
         android:id="@+id/tv_calendar_title"
@@ -29,7 +30,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/iv_btn_right"
+        android:id="@+id/iv_next_month"
         android:layout_width="16dp"
         android:layout_height="16dp"
         android:layout_marginStart="14dp"
@@ -37,7 +38,7 @@
         app:layout_constraintTop_toTopOf="@+id/tv_calendar_title"
         app:layout_constraintBottom_toBottomOf="@+id/tv_calendar_title"
         app:layout_constraintStart_toEndOf="@+id/tv_calendar_title"
-        app:srcCompat="@drawable/ic_btn_right" />
+        app:srcCompat="@drawable/ic_chevron_right" />
 
     <com.kizitonwose.calendarview.CalendarView
         android:id="@+id/calendar_view"
@@ -76,7 +77,7 @@
         app:layout_constraintTop_toTopOf="@+id/tv_record_title"
         app:layout_constraintBottom_toBottomOf="@+id/tv_record_title"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_record_question"/>
+        app:srcCompat="@drawable/ic_question_circle"/>
 
     <TextView
         android:id="@+id/tv_record_date"
@@ -88,6 +89,7 @@
         android:textSize="14sp"
         app:layout_constraintTop_toBottomOf="@+id/tv_record_title"
         app:layout_constraintStart_toStartOf="@+id/tv_record_title" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
@@ -101,5 +103,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_record_date" />
+
+    <include
+        android:id="@+id/layout_empty"
+        layout="@layout/calendar_empty_pill_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_record_date"
+        tools:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

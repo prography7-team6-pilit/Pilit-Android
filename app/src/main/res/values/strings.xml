@@ -32,4 +32,27 @@
     <string name="add_pill_repetition_option_sat">토</string>
     <string name="add_pill_push_subheading">푸시알림</string>
 
+    <!-- Calendar -->
+    <string name="calendar_date">2022년 5월</string>
+    <string name="calendar_record_title">섭취기록</string>
+    <string name="calendar_record_pill_name">약 이름</string>
+    <string name="calendar_record_intake_time">오전 8:00</string>
+    <string name="calendar_intake_complete">섭취완료</string>
+    <string name="calendar_record_date">05월 27일</string>
+
+    <!-- Description -->
+    <string name="description_calendar_left">지난 달로 넘어감</string>
+    <string name="description_calendar_right">다음 달로 넘어감</string>
+    <string name="description_calendar_tooltip">툴팁 팝업</string>
+    <string name="description_tooltip_eaten">먹은 필로 이미지</string>
+    <string name="description_tooltip_not_eaten">안 먹은 필로 이미지</string>
+    <string name="description_record_eat">복용 상태 변경</string>
+    <string name="description_empty">비어있는 영양제</string>
+
+    <!-- Tooltip -->
+    <string name="tooltip_content">복용 여부에 따라 필로의 표정이 달라져요!</string>
+    <string name="tooltip_eaten">먹었어요</string>
+    <string name="tooltip_not_eaten">안 먹었어요</string>
+    <string name="calendar_record_empty">아직 등록된 영양제가 없어요.\n섭취 알람 등록하고 매일 섭취 관리해보세요.</string>
+    <string name="calendar_record_add">알람 등록하기</string>
 </resources>

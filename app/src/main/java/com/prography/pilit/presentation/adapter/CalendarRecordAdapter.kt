@@ -5,10 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.prography.pilit.R
 import com.prography.pilit.databinding.ItemCalendarRecordBinding
 import com.prography.pilit.domain.model.Pill
 
-class CalendarRecordAdapter : ListAdapter<Pill, CalendarRecordAdapter.ViewHolder>(pillComparator) {
+class CalendarRecordAdapter(
+    private val onPillClicked: (alertId: Int) -> Unit
+) : ListAdapter<Pill, CalendarRecordAdapter.ViewHolder>(pillComparator) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType:Int): ViewHolder =
         ViewHolder(
@@ -16,7 +19,8 @@ class CalendarRecordAdapter : ListAdapter<Pill, CalendarRecordAdapter.ViewHolder
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            )
+            ),
+            onPillClicked
         )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -24,10 +28,21 @@ class CalendarRecordAdapter : ListAdapter<Pill, CalendarRecordAdapter.ViewHolder
     }
 
     inner class ViewHolder(
-        private val binding: ItemCalendarRecordBinding
+        private val binding: ItemCalendarRecordBinding,
+        private val onPillClicked: (alertId: Int) -> Unit
     ): RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Pill) {
             binding.pill = item
+            binding.btnEat.setOnClickListener {
+                onPillClicked(item.id)
+                if (item.isEaten) {
+                    binding.btnEat.setBackgroundResource(R.drawable.ic_pill_normal)
+                }
+                else {
+                    binding.btnEat.setBackgroundResource(R.drawable.ic_pill_press)
+                }
+
+            }
         }
     }
 

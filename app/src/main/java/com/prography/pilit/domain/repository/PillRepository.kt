@@ -11,5 +11,5 @@ interface PillRepository {
 
     suspend fun requestAlert(year: Int, month: Int, day: Int): List<Pill>
 
-    suspend fun requestTakingLogs(request: EatRequest): Boolean
+    suspend fun postTakingLogs(request: EatRequest): Boolean
 }

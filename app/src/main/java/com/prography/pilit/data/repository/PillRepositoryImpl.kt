@@ -18,7 +18,7 @@ class PillRepositoryImpl @Inject constructor(
     override suspend fun requestAlert(year: Int, month: Int, day: Int): List<Pill> =
         pillApiService.requestAlert(year, month, day).alerts.map { it.toPill() }
 
-    override suspend fun requestTakingLogs(request: EatRequest): Boolean =
-        pillApiService.requestTakingLogs(request).result
+    override suspend fun postTakingLogs(request: EatRequest): Boolean =
+        pillApiService.postTakingLogs(request).result
 
 }
