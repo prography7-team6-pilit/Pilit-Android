@@ -21,7 +21,7 @@
     <!-- edittext colors -->
     <color name="edittext_cursor">#426BF2</color>
     <color name="edittext_default_stroke">#33000000</color>
-    <color name="edittext_error_stroke">#FF0000</color>
+    <color name="edittext_error">#FF0000</color>
 
     <!-- checkbox colors -->
     <color name="checkbox_checked_false">#66000000</color>
