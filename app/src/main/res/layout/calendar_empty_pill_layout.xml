@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="36dp"
+    android:layout_marginHorizontal="50dp"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_pill_normal_disable"
+        android:contentDescription="@string/calendar_record_empty"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/calendar_record_empty"
+        android:layout_marginTop="16dp"
+        android:textAlignment="center"/>
+
+    <Button
+        android:id="@+id/btn_add_alert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="12dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/red_500"
+        android:textColor="@color/white"
+        android:text="@string/calendar_record_add"/>
+
+</LinearLayout>

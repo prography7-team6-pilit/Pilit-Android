@@ -19,6 +19,7 @@
     <color name="button_enable_false">#66FF5D5D</color>
 
     <!-- edittext colors -->
+    <color name="edittext_error_stroke">#FF0000</color>
     <color name="edittext_cursor">#426BF2</color>
     <color name="edittext_default_stroke">#33000000</color>
     <color name="edittext_error">#FF0000</color>
@@ -29,4 +30,7 @@
     <!-- switch colors -->
     <color name="switch_checked_false">#E6E6E6</color>
 
+    <color name="checkbox_default_stroke">#4D000000</color>
+
+    <color name="transparent">#00000000</color>
 </resources>

@@ -51,4 +51,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    fun moveToFragment(fragmentIndex: Int) {
+        mainBinding.viewpager.currentItem = fragmentIndex
+    }
 }

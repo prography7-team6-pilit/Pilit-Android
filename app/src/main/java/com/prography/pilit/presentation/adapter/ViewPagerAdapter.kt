@@ -7,7 +7,7 @@ import com.prography.pilit.presentation.fragment.AddPillFragment
 import com.prography.pilit.presentation.fragment.CalendarFragment
 import com.prography.pilit.presentation.fragment.PillListFragment
 
-class ViewPagerAdapter(fragmemt: FragmentActivity): FragmentStateAdapter(fragmemt) {
+class ViewPagerAdapter(fragment: FragmentActivity): FragmentStateAdapter(fragment) {
     override fun getItemCount(): Int = FRAGMENTS.size
 
     override fun createFragment(position: Int): Fragment = FRAGMENTS[position]
