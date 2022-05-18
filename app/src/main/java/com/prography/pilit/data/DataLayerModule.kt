@@ -32,4 +32,5 @@ object DataLayerModule {
     @Singleton
     fun providesPillRepository(pillApiService: PillApiService): PillRepository =
         PillRepositoryImpl(pillApiService)
+
 }
