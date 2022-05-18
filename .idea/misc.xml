@@ -8,6 +8,12 @@
         <entry key="app/src/main/res/drawable/calendar_complete_text.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_bg_pill_all_eaten.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_bg_pill_part_eaten.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/selector_default_switch_track.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/selector_menu_icon_calender.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/selector_menu_icon_pill_add.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/selector_menu_icon_pill_list.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/shape_default_switch_thumb.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_join.xml" value="0.15307971014492755" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/calendar_day_layout.xml" value="0.2783660888671875" />
         <entry key="app/src/main/res/layout/calendar_day_legend.xml" value="0.15677083333333333" />

@@ -1,5 +1,6 @@
 package com.prography.pilit.presentation.activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -18,6 +19,7 @@ class JoinActivity : AppCompatActivity() {
         binding = ActivityJoinBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel.requestJoin(uuid = "test", nickname = "test", firebasetoken = "test")
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
 }
