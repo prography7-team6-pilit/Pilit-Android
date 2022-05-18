@@ -1,6 +1,5 @@
 package com.prography.pilit.data.datasource.remote
 
-import com.prography.pilit.data.datasource.remote.pill.PillApiService
 import com.prography.pilit.data.datasource.remote.user.UserApiService
 import dagger.Module
 import dagger.Provides
@@ -17,9 +16,4 @@ object ServiceModule {
     @Singleton
     fun provideUserApiService(retrofit: Retrofit): UserApiService =
         retrofit.create(UserApiService::class.java)
-
-    @Provides
-    @Singleton
-    fun providesPillApiService(retrofit: Retrofit): PillApiService =
-        retrofit.create(PillApiService::class.java)
 }
