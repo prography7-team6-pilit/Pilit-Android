@@ -1,11 +1,10 @@
 package com.prography.pilit.data.repository
 
-import com.prography.pilit.data.datasource.remote.pill.EatRequest
-import com.prography.pilit.data.datasource.remote.pill.PillApiService
-import com.prography.pilit.data.datasource.remote.pill.TakeLog
+import com.prography.pilit.data.datasource.remote.pill.*
 import com.prography.pilit.data.mapper.toPill
 import com.prography.pilit.domain.model.Pill
 import com.prography.pilit.domain.repository.PillRepository
+import retrofit2.Response
 import javax.inject.Inject
 
 class PillRepositoryImpl @Inject constructor(
@@ -20,4 +19,9 @@ class PillRepositoryImpl @Inject constructor(
     override suspend fun postTakingLogs(request: EatRequest): Boolean =
         pillApiService.postTakingLogs(request).result
 
+    override suspend fun requestEditAlert(alertId: Int, body:AddAlertRequest): Response<AddAlertResponse> =
+        pillApiService.requestEditAlert(alertId, body)
+
+    override suspend fun requestDeleteAlert(alertId: Int): Response<DeleteResponse> =
+        pillApiService.requestDeleteAlert(alertId)
 }

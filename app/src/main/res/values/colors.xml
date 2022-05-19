@@ -26,11 +26,13 @@
 
     <!-- checkbox colors -->
     <color name="checkbox_checked_false">#66000000</color>
+    <color name="checkbox_default_stroke">#4D000000</color>
 
     <!-- switch colors -->
     <color name="switch_checked_false">#E6E6E6</color>
 
-    <color name="checkbox_default_stroke">#4D000000</color>
+    <!-- tooltip colors -->
+    <color name="tooltip_arrow_color">#33000000</color>
 
     <color name="transparent">#00000000</color>
 </resources>

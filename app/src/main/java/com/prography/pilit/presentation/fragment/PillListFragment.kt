@@ -1,5 +1,6 @@
 package com.prography.pilit.presentation.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,9 +10,11 @@ import androidx.fragment.app.viewModels
 import com.prography.pilit.PilitApplication
 import com.prography.pilit.R
 import com.prography.pilit.databinding.FragmentPillListBinding
+import com.prography.pilit.domain.model.Pill
+import com.prography.pilit.presentation.activity.EditPillActivity
 import com.prography.pilit.presentation.activity.MainActivity
 import com.prography.pilit.presentation.adapter.PillListAdapter
-import com.prography.pilit.presentation.viewmodel.CalendarViewModel
+import com.prography.pilit.presentation.viewmodel.PillListViewModel
 import com.skydoves.balloon.ArrowOrientation
 import com.skydoves.balloon.Balloon
 import com.skydoves.balloon.BalloonAnimation
@@ -24,7 +27,7 @@ class PillListFragment : Fragment() {
 
     private var _binding: FragmentPillListBinding? = null
     private val binding get() = _binding!!
-    private val viewModel by viewModels<CalendarViewModel>()
+    private val viewModel by viewModels<PillListViewModel>()
     private val pillListAdapter by lazy {
         PillListAdapter(this::eatPill, this::pillOption)
     }
@@ -87,8 +90,20 @@ class PillListFragment : Fragment() {
         }
     }
 
-    private fun pillOption(alertId: Int) {
-
+    private fun pillOption(pillData: Pill, selectedMenuNum: Int) {
+        when(selectedMenuNum){
+            0 -> { // 수정
+                val intent = Intent(requireContext(), EditPillActivity::class.java)
+                intent.putExtra("pillData", pillData)
+                startActivity(intent)
+            }
+            1 -> { // 삭제
+                viewModel.requestDeleteAlert(alertId = pillData.alertId)
+                viewModel.deleteAlertSuccess.observe(viewLifecycleOwner){
+                    setAlertData()
+                }
+            }
+        }
     }
 
     private fun setToolTip(){
@@ -100,6 +115,7 @@ class PillListFragment : Fragment() {
             .setBackgroundColorResource(R.color.transparent)
             .setBalloonAnimation(BalloonAnimation.CIRCULAR)
             .setLifecycleOwner(viewLifecycleOwner)
+            .setElevation(10)
             .build()
 
         binding.ivPillListTooltip.setOnClickListener {
