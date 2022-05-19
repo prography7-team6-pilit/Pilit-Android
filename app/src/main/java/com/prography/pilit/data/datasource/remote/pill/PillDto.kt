@@ -1,6 +1,7 @@
 package com.prography.pilit.data.datasource.remote.pill
 
 import com.google.gson.annotations.SerializedName
+import com.prography.pilit.domain.model.Week
 
 data class EatResponseMonth(
     @SerializedName("takelogs")
@@ -28,7 +29,7 @@ data class Alert(
     @SerializedName("alertTime")
     val alertTime: String,
     @SerializedName("alertWeek")
-    val alertWeek: List<String>,
+    val alertWeek: List<Week>,
     @SerializedName("isPush")
     val isPush: Boolean,
     @SerializedName("pillName")
