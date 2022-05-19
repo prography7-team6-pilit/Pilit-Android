@@ -2,25 +2,22 @@ package com.prography.pilit.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.prography.pilit.R
-import com.prography.pilit.databinding.ItemCalendarRecordBinding
+import com.prography.pilit.databinding.ItemPillListBinding
 import com.prography.pilit.domain.model.Pill
 
-class CalendarRecordAdapter(
-    private val onPillClicked: (alertId: Int) -> Unit
-) : ListAdapter<Pill, CalendarRecordAdapter.ViewHolder>(pillComparator) {
+class PillListAdapter(
+    private val onPillClicked: (alertId: Int) -> Unit,
+    private val onOptionClicked: (alertId: Int) -> Unit
+) : ListAdapter<Pill, PillListAdapter.ViewHolder>(pillComparator) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType:Int): ViewHolder =
         ViewHolder(
-            ItemCalendarRecordBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            ),
-            onPillClicked
+            ItemPillListBinding.inflate(LayoutInflater.from(parent.context), parent, false),
+            onPillClicked,
+            onOptionClicked
         )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -28,14 +25,17 @@ class CalendarRecordAdapter(
     }
 
     inner class ViewHolder(
-        private val binding: ItemCalendarRecordBinding,
-        private val onPillClicked: (alertId: Int) -> Unit
+        private val binding: ItemPillListBinding,
+        private val onPillClicked: (alertId: Int) -> Unit,
+        private val onOptionClicked: (alertId: Int) -> Unit
     ): RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Pill) {
             binding.pill = item
-            binding.btnEat.setOnClickListener {
-                binding.pill = item.copy(isEaten = binding.pill!!.isEaten.not())
-                onPillClicked(item.id)
+            binding.ivPillListTaking.setOnClickListener {
+                onPillClicked(item.alertId)
+            }
+            binding.ivPillListOption.setOnClickListener{
+                onOptionClicked(item.alertId)
             }
         }
     }
