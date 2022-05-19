@@ -33,7 +33,8 @@
     <string name="add_pill_medicine_name_subheading">약 추가</string>
     <string name="add_pill_medicine_name_hint">약 이름을 알려주세요</string>
     <string name="add_pill_intake_time_subheading">섭취 시간</string>
-    <string name="add_pill_default_alarm_time">오전 8:00</string>
+    <string name="add_pill_default_alarm_am_pm">오전</string>
+    <string name="add_pill_default_alarm_time">8:00</string>
     <string name="add_pill_repetition_subheading">반복</string>
     <string name="add_pill_repetition_option_sun">일</string>
     <string name="add_pill_repetition_option_mon">월</string>

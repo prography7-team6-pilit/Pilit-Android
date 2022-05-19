@@ -19,6 +19,9 @@ class PillRepositoryImpl @Inject constructor(
     override suspend fun postTakingLogs(request: EatRequest): Boolean =
         pillApiService.postTakingLogs(request).result
 
+    override suspend fun requestAddAlert(body:AddAlertRequest): Response<AddAlertResponse> =
+        pillApiService.requestAddAlert(body)
+
     override suspend fun requestEditAlert(alertId: Int, body:AddAlertRequest): Response<AddAlertResponse> =
         pillApiService.requestEditAlert(alertId, body)
 

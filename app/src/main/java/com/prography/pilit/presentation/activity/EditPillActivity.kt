@@ -78,7 +78,7 @@ class EditPillActivity : AppCompatActivity() {
 
     fun setTimeSettingButtonClickListener(){
         binding.ivEditPillIntakeTimeSetting.setOnClickListener {
-            val originTime = binding.tvEditPillIntakeTimeAlarmTime.text.split(":")
+            val originTime = alertTime24.split(":")
             TimePickerDialog(this, { view, hour, minute ->
                 val cal = Calendar.getInstance()
                 cal.set(Calendar.HOUR_OF_DAY, hour)
@@ -99,7 +99,7 @@ class EditPillActivity : AppCompatActivity() {
             val body = AddAlertRequest(alertTime, alertWeek, isPush, pillName)
             viewModel.requestEditAlert(alertId = pillData.alertId, body = body)
             viewModel.editAlertSuccess.observe(this){
-                this.finish()
+                if(it) this.finish()
             }
         }
     }

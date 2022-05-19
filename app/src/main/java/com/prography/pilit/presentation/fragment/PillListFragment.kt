@@ -100,7 +100,7 @@ class PillListFragment : Fragment() {
             1 -> { // 삭제
                 viewModel.requestDeleteAlert(alertId = pillData.alertId)
                 viewModel.deleteAlertSuccess.observe(viewLifecycleOwner){
-                    setAlertData()
+                    if(it) setAlertData()
                 }
             }
         }

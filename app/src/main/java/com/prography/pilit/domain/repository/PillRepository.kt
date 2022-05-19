@@ -12,6 +12,8 @@ interface PillRepository {
 
     suspend fun postTakingLogs(request: EatRequest): Boolean
 
+    suspend fun requestAddAlert(body:AddAlertRequest): Response<AddAlertResponse>
+
     suspend fun requestEditAlert(alertId: Int, body: AddAlertRequest): Response<AddAlertResponse>
 
     suspend fun requestDeleteAlert(alertId: Int): Response<DeleteResponse>

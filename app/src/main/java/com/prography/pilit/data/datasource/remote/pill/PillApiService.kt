@@ -13,6 +13,9 @@ interface PillApiService {
     @GET("/api/v1/pill-alerts")
     suspend fun requestAlert(@Query("year") year: Int, @Query("month") month: Int, @Query("day") day: Int): AlertResponse
 
+    @POST("/api/v1/pill-alerts")
+    suspend fun requestAddAlert(@Body body:AddAlertRequest): Response<AddAlertResponse>
+
     @PUT("/api/v1/pill-alerts/{alertId}")
     suspend fun requestEditAlert(@Path("alertId") alertId: Int, @Body body:AddAlertRequest): Response<AddAlertResponse>
 
