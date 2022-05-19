@@ -6,6 +6,8 @@
     <string name="hello_blank_fragment">hello blank fragment</string>
     <string name="complete">완료</string>
     <string name="confirm">확인</string>
+    <string name="am">오전</string>
+    <string name="pm">오후</string>
 
     <!-- Join -->
     <string name="join_message">만나서 반가워요!\n닉네임을 설정해볼까요?</string>
@@ -15,6 +17,16 @@
     <!-- Notification -->
     <string name="notification_channel_id">Channel</string>
     <string name="notification_channel_name">약 복용 알림</string>
+
+    <!-- Pill List -->
+    <string name="pill_list_greeting_message_1">님,</string>
+    <string name="pill_list_greeting_message_2">오늘도 건강하세요!</string>
+    <string name="pill_list_today_pill_message_1">오늘의 영양제&#160;</string>
+    <string name="pill_list_today_pill_message_2">건</string>
+    <string name="pill_list_today_pill_zero_message">영양제를 등록하고\n매일 섭취 관리해보세요 :)</string>
+    <string name="pill_list_today_pill_zero_add_message">영양제 등록하기</string>
+    <string name="menu_pill_option_edit">수정</string>
+    <string name="menu_pill_option_delete">삭제</string>
 
     <!-- Add Pill -->
     <string name="add_pill_title">약 추가하기</string>
@@ -31,6 +43,9 @@
     <string name="add_pill_repetition_option_fri">금</string>
     <string name="add_pill_repetition_option_sat">토</string>
     <string name="add_pill_push_subheading">푸시알림</string>
+
+    <!-- Edit Pill -->
+    <string name="edit_pill_title">수정</string>
 
     <!-- Calendar -->
     <string name="calendar_date">2022년 5월</string>
