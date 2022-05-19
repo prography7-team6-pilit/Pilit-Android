@@ -34,13 +34,8 @@ class CalendarRecordAdapter(
         fun bind(item: Pill) {
             binding.pill = item
             binding.btnEat.setOnClickListener {
+                binding.pill = item.copy(isEaten = binding.pill!!.isEaten.not())
                 onPillClicked(item.id)
-                if (item.isEaten) {
-                    binding.btnEat.setBackgroundResource(R.drawable.ic_pill_normal)
-                }
-                else {
-                    binding.btnEat.setBackgroundResource(R.drawable.ic_pill_press)
-                }
             }
         }
     }
