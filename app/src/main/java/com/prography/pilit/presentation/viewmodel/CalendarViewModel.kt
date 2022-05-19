@@ -3,7 +3,6 @@ package com.prography.pilit.presentation.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.prography.pilit.data.datasource.remote.pill.Alert
 import com.prography.pilit.data.datasource.remote.pill.EatRequest
 import com.prography.pilit.data.datasource.remote.pill.TakeLog
 import com.prography.pilit.domain.model.Pill
@@ -18,7 +17,8 @@ import javax.inject.Inject
 class CalendarViewModel @Inject constructor(
     private val requestMonthlyPillUseCase: RequestMonthlyPillUseCase,
     private val requestAlertUseCase: RequestAlertUseCase,
-    private val postTakingLogsUseCase: postTakingLogsUseCase
+    private val postTakingLogsUseCase: postTakingLogsUseCase,
+
 ) : ViewModel() {
 
     val monthlyPillListData: MutableLiveData<List<TakeLog>> = MutableLiveData()

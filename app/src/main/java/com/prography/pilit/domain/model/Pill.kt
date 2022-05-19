@@ -1,5 +1,9 @@
 package com.prography.pilit.domain.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Pill(
     val alertId:Int,
     val pillName:String,
@@ -9,4 +13,4 @@ data class Pill(
     val isPush:Boolean,
     val eatId:Int,
     val isEaten: Boolean
-)
+) : Parcelable

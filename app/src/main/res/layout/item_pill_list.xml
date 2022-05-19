@@ -24,27 +24,27 @@
                 android:id="@+id/tv_pill_list_am_pm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="오전"
+                android:text="@{pill.am_pm == false? @string/am : @string/pm}"
                 android:textColor="@color/black"
                 android:textSize="10dp"
                 android:layout_marginStart="18dp"
                 app:layout_constraintTop_toTopOf="@id/tv_pill_list_alert_time"
                 app:layout_constraintBottom_toBottomOf="@id/tv_pill_list_alert_time"
                 app:layout_constraintStart_toStartOf="parent"
-                android:text="@{pill.am_pm == false? @string/am : @string/pm}"/>
+                tools:text="오전"/>
 
             <TextView
                 android:id="@+id/tv_pill_list_alert_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="7:00"
+                android:text="@{pill.alertTime}"
                 android:textColor="@color/black"
                 android:textSize="16dp"
                 android:layout_marginTop="18dp"
                 android:layout_marginStart="2dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tv_pill_list_am_pm"
-                android:text="@{pill.alertTime}"/>
+                tools:text="7:00"/>
 
             <ImageView
                 android:id="@+id/iv_pill_list_option"
@@ -62,7 +62,7 @@
                 android:id="@+id/tv_pill_list_pill_name"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                tools:text="비타민C"
+                android:text="@{pill.pillName}"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="16dp"
@@ -72,20 +72,20 @@
                 android:layout_marginStart="18dp"
                 app:layout_constraintTop_toBottomOf="@id/tv_pill_list_alert_time"
                 app:layout_constraintStart_toStartOf="parent"
-                android:text="@{pill.pillName}"/>
+                tools:text="비타민C" />
 
             <ImageView
                 android:id="@+id/iv_pill_list_taking"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:src="@drawable/ic_pilit_logo_red"
+                android:src="@{pill.eaten ? @drawable/ic_pilit_logo_red : @drawable/ic_pilit_logo_outlined_red}"
                 android:layout_marginTop="46dp"
                 android:layout_marginBottom="14dp"
                 android:layout_marginEnd="14dp"
                 app:layout_constraintTop_toBottomOf="@id/iv_pill_list_option"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:src="@{pill.eaten ? @drawable/ic_pilit_logo_red : @drawable/ic_pilit_logo_outlined_red}"/>
+                tools:src="@drawable/ic_pilit_logo_red"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 </layout>

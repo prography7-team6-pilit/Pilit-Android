@@ -12,6 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="android:timePickerStyle">@style/SpinnerTimePicker</item>
     </style>
 
     <style name="BorderEditText" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -32,5 +33,9 @@
         <item name="android:switchMinWidth">32dp</item>
         <item name="android:thumb">@drawable/shape_default_switch_thumb</item>
         <item name="track">@drawable/selector_default_switch_track</item>
+    </style>
+
+    <style name="SpinnerTimePicker" parent="android:Widget.Material.Light.TimePicker">
+        <item name="android:timePickerMode">spinner</item>
     </style>
 </resources>

@@ -23,6 +23,7 @@
         </activity>
         <activity android:name=".presentation.activity.MainActivity"
             android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".presentation.activity.EditPillActivity"/>
         <service
             android:name=".data.datasource.remote.FirebaseService"
             android:exported="false">

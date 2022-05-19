@@ -18,6 +18,29 @@ data class EatResponse(
     val result: Boolean
 )
 
+data class DeleteResponse(
+    @SerializedName("result")
+    val result: Boolean
+)
+
+data class AddAlertRequest(
+    @SerializedName("alertTime")
+    val alertTime: String,
+    @SerializedName("alertWeek")
+    val alertWeek: List<Week>,
+    @SerializedName("isPush")
+    val isPush: Boolean,
+    @SerializedName("pillName")
+    val pillName: String
+)
+
+data class AddAlertResponse(
+    @SerializedName("result")
+    val result: Boolean,
+    @SerializedName("error")
+    val error: String
+)
+
 data class AlertResponse(
     @SerializedName("alerts")
     val alerts: List<Alert>

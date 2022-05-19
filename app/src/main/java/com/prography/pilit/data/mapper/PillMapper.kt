@@ -5,7 +5,8 @@ import com.prography.pilit.domain.model.Pill
 import java.text.SimpleDateFormat
 
 fun Alert.toPill(): Pill {
-    val hour24 = alertTime.substring(0,2).toInt()
+    val originTime = alertTime.split(":")
+    val hour24 = originTime[0].toInt()
     var hour12 = hour24
     var am_pm = false
 
@@ -19,7 +20,7 @@ fun Alert.toPill(): Pill {
         alertId = alertId,
         pillName = pillName,
         am_pm = am_pm, // 오전 false, 오후 true
-        alertTime = alertTime,
+        alertTime = "${hour12}:${originTime[1]}",
         alertWeek = alertWeek,
         isPush = isPush,
         eatId = eatId,
