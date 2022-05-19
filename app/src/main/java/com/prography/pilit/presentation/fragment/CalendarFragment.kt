@@ -1,6 +1,5 @@
 package com.prography.pilit.presentation.fragment
 
-import android.icu.util.LocaleData
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -32,11 +31,9 @@ import com.skydoves.balloon.ArrowOrientation
 import com.skydoves.balloon.Balloon
 import com.skydoves.balloon.BalloonAnimation
 import com.skydoves.balloon.showAlignBottom
-import com.skydoves.balloon.textForm
 import dagger.hilt.android.AndroidEntryPoint
 import java.lang.IllegalArgumentException
 import java.time.LocalDate
-import java.time.LocalDateTime
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
 import java.time.temporal.WeekFields
@@ -55,7 +52,7 @@ class CalendarFragment : Fragment() {
         CalendarRecordAdapter(this::eatPill)
     }
 
-    private val loglist: MutableList<TakeLog> = mutableListOf()
+    private val logList: MutableList<TakeLog> = mutableListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -140,7 +137,7 @@ class CalendarFragment : Fragment() {
                         dotView.makeInVisible()
                     }
 
-                    val takeLog = loglist.find {
+                    val takeLog = logList.find {
                         LocalDate.parse(
                             it.eatDate,
                             DateTimeFormatter.ISO_DATE
@@ -167,8 +164,8 @@ class CalendarFragment : Fragment() {
 
 
         viewModel.monthlyPillListData.observe(viewLifecycleOwner) {
-            loglist.clear()
-            loglist.addAll(it)
+            logList.clear()
+            logList.addAll(it)
             binding.calendarView.notifyCalendarChanged()
         }
 
