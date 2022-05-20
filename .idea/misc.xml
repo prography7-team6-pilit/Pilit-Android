@@ -10,8 +10,11 @@
         <entry key="app/src/main/res/drawable/calendar_complete_text.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_bg_pill_all_eaten.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_bg_pill_part_eaten.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_btn_pill_press_50.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_chevron_right.xml" value="0.123" />
         <entry key="app/src/main/res/drawable/ic_pilit_logo_outlined_red.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_pill_normal.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_pill_press.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_tooltip_pill_press_30.xml" value="0.123" />
         <entry key="app/src/main/res/drawable/selector_default_switch_track.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/selector_menu_icon_calender.xml" value="0.1" />

@@ -17,6 +17,7 @@ import com.kizitonwose.calendarview.ui.ViewContainer
 import com.kizitonwose.calendarview.utils.next
 import com.kizitonwose.calendarview.utils.previous
 import com.prography.pilit.R
+import com.prography.pilit.data.datasource.remote.pill.TakeLog
 import com.prography.pilit.databinding.CalendarDayLayoutBinding
 import com.prography.pilit.databinding.FragmentCalendarBinding
 import com.prography.pilit.databinding.ItemCalendarHeaderBinding
@@ -43,15 +44,15 @@ class CalendarFragment : Fragment() {
 
     private var _binding: FragmentCalendarBinding? = null
     private val binding get() = _binding ?: throw IllegalArgumentException("Must be initialized.")
-    private val today = LocalDate.now()
-
     private val viewModel by viewModels<CalendarViewModel>()
 
-    private var selectedDate: LocalDate? = null
+    private var selectedDate: LocalDate? = LocalDate.now()
 
     private val adapter by lazy {
         CalendarRecordAdapter(this::eatPill)
     }
+
+    private val logList: MutableList<TakeLog> = mutableListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -127,46 +128,46 @@ class CalendarFragment : Fragment() {
                 val dotView = container.dotView
                 container.day = day
 
-                textView.text = day.date.dayOfMonth.toString()
+                if (day.owner == DayOwner.THIS_MONTH) {
+                    textView.text = day.date.dayOfMonth.toString()
 
-                viewModel.monthlyPillListData.observe(viewLifecycleOwner) {
-                    it.forEach { takeLog ->
-                        if (day.owner == DayOwner.THIS_MONTH) {
-                            textView.makeVisible()
-                            val date = LocalDate.parse(takeLog.eatDate, DateTimeFormatter.ISO_DATE)
-                            when (date) {
-                                today -> {
-                                    textView.setTextColorRes(R.color.white)
-                                    dotView.makeVisible()
-                                }
-                                else -> {
-                                    dotView.makeInVisible()
-                                    textView.background = null
-                                    when (takeLog.pillState) {
-                                        0 -> {
-                                            textView.setTextColorRes(R.color.black)
-                                            textView.setBackgroundResource(R.drawable.bg_pill_part_eaten)
-                                        }
-                                        1 -> {
-                                            textView.setTextColorRes(R.color.white)
-                                            textView.setBackgroundResource(R.drawable.bg_pill_all_eaten)
-                                        }
-                                        else -> {
-                                            textView.setTextColorRes(R.color.black)
-                                            textView.setBackgroundResource(R.color.transparent)
-                                        }
-                                    }
-                                }
-                            }
-                        } else {
-                            textView.makeInVisible()
-                            dotView.makeInVisible()
-                        }
+                    if (day.date == selectedDate) {
+                        dotView.makeVisible()
+                    } else {
+                        dotView.makeInVisible()
                     }
+
+                    val takeLog = logList.find {
+                        LocalDate.parse(
+                            it.eatDate,
+                            DateTimeFormatter.ISO_DATE
+                        ) == day.date
+                    }
+                    if (takeLog != null) {
+                        if (takeLog.pillState == 0) {
+                            textView.setBackgroundResource(R.drawable.bg_pill_part_eaten)
+                            textView.setTextColorRes(R.color.black)
+                        } else {
+                            textView.setBackgroundResource(R.drawable.bg_pill_all_eaten)
+                            textView.setTextColorRes(R.color.white)
+                        }
+                    } else {
+                        textView.background = null
+                        textView.setTextColorRes(R.color.black)
+                    }
+                } else {
+                    textView.makeInVisible()
+                    dotView.makeInVisible()
                 }
             }
         }
 
+
+        viewModel.monthlyPillListData.observe(viewLifecycleOwner) {
+            logList.clear()
+            logList.addAll(it)
+            binding.calendarView.notifyCalendarChanged()
+        }
 
         binding.calendarView.monthHeaderBinder =
             object : MonthHeaderFooterBinder<MonthViewContainer> {
@@ -182,6 +183,22 @@ class CalendarFragment : Fragment() {
             binding.calendarView.findFirstVisibleMonth()?.let {
                 binding.calendarView.smoothScrollToMonth(it.yearMonth.next)
             }
+        }
+
+        binding.calendarView.monthScrollListener = { month ->
+            val title = String.format(
+                getString(R.string.calendar_title_year_month),
+                month.yearMonth.year,
+                month.yearMonth.monthValue
+            )
+            binding.tvCalendarTitle.text = title
+            selectedDate?.let {
+                // Clear selection if we scroll to a new month.
+                selectedDate = null
+                binding.calendarView.notifyDateChanged(it)
+                updateAdapterForDate(null)
+            }
+            selectDate(month.yearMonth.atDay(1))
         }
 
         binding.ivPreviousMonth.setOnClickListener {
@@ -204,7 +221,6 @@ class CalendarFragment : Fragment() {
                 adapter.submitList(it)
             }
         }
-        viewModel.getAlertList(2022, 5, 18)
     }
 
     private fun initRecyclerView() {
@@ -224,20 +240,26 @@ class CalendarFragment : Fragment() {
             selectedDate = date
             oldDate?.let { binding.calendarView.notifyDateChanged(it) }
             binding.calendarView.notifyDateChanged(date)
-//            updateAdapterForDate(date)
+            updateAdapterForDate(date)
+            binding.tvRecordDate.text = String.format(
+                getString(R.string.calendar_record_date),
+                date.monthValue,
+                date.dayOfMonth
+            )
         }
     }
 
     private fun eatPill(alertId: Int) {
         viewModel.postTakingLogs(alertId)
     }
-//    private fun updateAdapterForDate(date: LocalDate) {
-//        eventsAdapter.apply {
-//            events.clear()
-//            events.addAll(this@Example3Fragment.events[date].orEmpty())
-//            notifyDataSetChanged()
-//        }
-//        binding.exThreeSelectedDateText.text = selectionFormatter.format(date)
-//    }
+
+    private fun updateAdapterForDate(date: LocalDate?) {
+        viewModel.getAlertList(
+            date?.year ?: LocalDate.now().year,
+            date?.monthValue ?: LocalDate.now().monthValue,
+            date?.dayOfMonth ?: LocalDate.now().dayOfMonth
+        )
+        adapter.notifyItemRangeRemoved(0, adapter.itemCount)
+    }
 }
 
