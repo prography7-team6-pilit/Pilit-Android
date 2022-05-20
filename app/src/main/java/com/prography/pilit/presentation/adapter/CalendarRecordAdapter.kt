@@ -35,7 +35,7 @@ class CalendarRecordAdapter(
             binding.pill = item
             binding.btnEat.setOnClickListener {
                 binding.pill = item.copy(isEaten = binding.pill!!.isEaten.not())
-                onPillClicked(item.id)
+                onPillClicked(item.alertId)
             }
         }
     }
