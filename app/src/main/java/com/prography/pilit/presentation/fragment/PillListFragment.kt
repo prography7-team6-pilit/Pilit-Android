@@ -46,8 +46,12 @@ class PillListFragment : Fragment() {
         setInitUserInformation()
         setPillListAdapter()
         setAddPillButtonClickListener()
-        setAlertData()
         setToolTip()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setAlertData()
     }
 
     override fun onDestroy() {
@@ -74,7 +78,7 @@ class PillListFragment : Fragment() {
         val year = currentDay.get(Calendar.YEAR)
         val month = currentDay.get(Calendar.MONTH)
         val day = currentDay.get(Calendar.DAY_OF_MONTH)
-        viewModel.getAlertList(year = year, month= month, day= day)
+        viewModel.getAlertList(year = year, month= month + 1, day= day)
         viewModel.alertListData.observe(viewLifecycleOwner){
             binding.pillCount = it.size
             if(it.isNotEmpty()){
