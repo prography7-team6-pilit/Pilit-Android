@@ -107,6 +107,7 @@ class CalendarFragment : Fragment() {
         }
 
 
+
         val currentMonth = YearMonth.now()
         val firstMonth = currentMonth.minusMonths(10)
         val lastMonth = currentMonth.plusMonths(10)
@@ -162,6 +163,7 @@ class CalendarFragment : Fragment() {
             }
         }
 
+        selectDate(selectedDate ?: LocalDate.now())
 
         viewModel.monthlyPillListData.observe(viewLifecycleOwner) {
             logList.clear()
