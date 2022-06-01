@@ -1,6 +1,7 @@
 package com.prography.pilit.presentation.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -130,6 +131,8 @@ class CalendarFragment : Fragment() {
                 container.day = day
 
                 if (day.owner == DayOwner.THIS_MONTH) {
+
+                    textView.makeVisible()
                     textView.text = day.date.dayOfMonth.toString()
 
                     if (day.date == selectedDate) {
@@ -163,7 +166,6 @@ class CalendarFragment : Fragment() {
             }
         }
 
-        selectDate(selectedDate ?: LocalDate.now())
 
         viewModel.monthlyPillListData.observe(viewLifecycleOwner) {
             logList.clear()
@@ -203,9 +205,17 @@ class CalendarFragment : Fragment() {
             selectDate(month.yearMonth.atDay(1))
         }
 
+
         binding.ivPreviousMonth.setOnClickListener {
             binding.calendarView.findFirstVisibleMonth()?.let {
                 binding.calendarView.smoothScrollToMonth(it.yearMonth.previous)
+            }
+        }
+
+
+        if (savedInstanceState == null) {
+            binding.calendarView.post {
+                selectDate(LocalDate.now())
             }
         }
 
@@ -223,7 +233,10 @@ class CalendarFragment : Fragment() {
                 adapter.submitList(it)
             }
         }
+
+
     }
+
 
     private fun initRecyclerView() {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
