@@ -25,6 +25,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/calendar_day_layout.xml" value="0.2783660888671875" />
         <entry key="app/src/main/res/layout/calendar_day_legend.xml" value="0.15677083333333333" />
+        <entry key="app/src/main/res/layout/calendar_empty_pill_layout.xml" value="0.12001811594202899" />
         <entry key="app/src/main/res/layout/calendar_help_balloon.xml" value="0.23125" />
         <entry key="app/src/main/res/layout/calendar_no_pill_layout.xml" value="0.2765625" />
         <entry key="app/src/main/res/layout/calendar_tooltip.xml" value="0.1" />
