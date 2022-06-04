@@ -73,9 +73,9 @@ class CalendarFragment : Fragment() {
             .setArrowSize(0)
             .setBackgroundDrawableResource(R.drawable.bg_calendar_tooltip)
             .setArrowOrientation(ArrowOrientation.BOTTOM)
-            .setBackgroundColorResource(R.color.transparent)
             .setBalloonAnimation(BalloonAnimation.CIRCULAR)
             .setLifecycleOwner(viewLifecycleOwner)
+            .setElevation(10)
             .build()
 
         val imageView = binding.ivTooltip
