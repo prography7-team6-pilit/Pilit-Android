@@ -21,6 +21,7 @@
         <entry key="app/src/main/res/drawable/selector_menu_icon_pill_add.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/selector_menu_icon_pill_list.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/shape_default_switch_thumb.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_edit_pill.xml" value="0.12310030395136778" />
         <entry key="app/src/main/res/layout/activity_join.xml" value="0.15307971014492755" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/calendar_day_layout.xml" value="0.2783660888671875" />
@@ -36,6 +37,7 @@
         <entry key="app/src/main/res/layout/item_calendar_day.xml" value="0.165" />
         <entry key="app/src/main/res/layout/item_calendar_header.xml" value="0.15677083333333333" />
         <entry key="app/src/main/res/layout/item_calendar_record.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/item_pill_list.xml" value="0.1171875" />
         <entry key="app/src/main/res/menu/menu_bottom.xml" value="0.1" />
       </map>
     </option>
