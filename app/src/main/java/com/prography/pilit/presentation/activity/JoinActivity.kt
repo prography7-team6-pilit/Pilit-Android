@@ -24,6 +24,7 @@ class JoinActivity : AppCompatActivity() {
         binding = ActivityJoinBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        window.statusBarColor = getColor(R.color.background_orange)
         autoLogin()
         verifyJoinNickname()
         setConfirmButtonClickListener()
