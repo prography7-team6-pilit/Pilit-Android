@@ -1,5 +1,6 @@
 package com.prography.pilit.presentation.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -19,29 +20,31 @@ class PillListViewModel @Inject constructor(
     private val requestDeleteAlertUseCase: RequestDeleteAlertUseCase
 ) : ViewModel() {
 
-    val alertListData: MutableLiveData<List<Pill>> = MutableLiveData()
-    val takingLogsData: MutableLiveData<Boolean> = MutableLiveData()
-    val deleteAlertSuccess: MutableLiveData<Boolean> = MutableLiveData()
+    private val _alertListData: MutableLiveData<List<Pill>> = MutableLiveData()
+    val alertListData: LiveData<List<Pill>> get() = _alertListData
 
-    fun getAlertList(year: Int, month: Int, day: Int) {
-        viewModelScope.launch {
-            alertListData.postValue(requestAlertUseCase(year, month, day))
-        }
+    private val _takingLogsData: MutableLiveData<Boolean> = MutableLiveData()
+    val takingLogsData: LiveData<Boolean> get() = _takingLogsData
+
+    private val _deleteAlertSuccess: MutableLiveData<Boolean> = MutableLiveData()
+    val deleteAlertSuccess: LiveData<Boolean> get() = _deleteAlertSuccess
+
+    fun getAlertList(year: Int, month: Int, day: Int) = viewModelScope.launch {
+        val response = requestAlertUseCase(year, month, day)
+        _alertListData.postValue(response)
     }
 
-    fun  postTakingLogs(alertId: Int) {
-        viewModelScope.launch {
-            takingLogsData.postValue(postTakingLogsUseCase(EatRequest(alertId)))
-        }
+    fun  postTakingLogs(alertId: Int) = viewModelScope.launch {
+        _takingLogsData.postValue(postTakingLogsUseCase(EatRequest(alertId)))
     }
 
     fun requestDeleteAlert(alertId: Int) = viewModelScope.launch {
         val response = requestDeleteAlertUseCase(alertId = alertId)
         if(response.isSuccessful){
-            deleteAlertSuccess.postValue(true)
+            _deleteAlertSuccess.postValue(true)
         }
         else{
-            deleteAlertSuccess.postValue(false)
+            _deleteAlertSuccess.postValue(false)
         }
     }
 }

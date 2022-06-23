@@ -59,21 +59,21 @@ class PillListFragment : Fragment() {
         _binding = null
     }
 
-    fun setAddPillButtonClickListener(){
+    private fun setAddPillButtonClickListener(){
         binding.btnPillListTodayPillZeroAdd.setOnClickListener {
             (requireActivity() as MainActivity).moveToFragment(1)
         }
     }
 
-    fun setInitUserInformation(){
+    private fun setInitUserInformation(){
         binding.nickname = PilitApplication.preferences.nickname
     }
 
-    fun setPillListAdapter(){
+    private fun setPillListAdapter(){
         binding.rvPillList.adapter = pillListAdapter
     }
 
-    fun setAlertData(){
+    private fun setAlertData(){
         val currentDay = Calendar.getInstance()
         val year = currentDay.get(Calendar.YEAR)
         val month = currentDay.get(Calendar.MONTH)
