@@ -6,6 +6,7 @@
     <string name="hello_blank_fragment">hello blank fragment</string>
     <string name="complete">완료</string>
     <string name="confirm">확인</string>
+    <string name="count">회</string>
     <string name="am">오전</string>
     <string name="pm">오후</string>
 
@@ -32,7 +33,10 @@
     <string name="add_pill_title">약 추가하기</string>
     <string name="add_pill_medicine_name_subheading">약 추가</string>
     <string name="add_pill_medicine_name_hint">약 이름을 알려주세요</string>
+    <string name="add_pill_intake_amount_subheading">섭취량</string>
+    <string name="add_pill_intake_amount_init_count">1</string>
     <string name="add_pill_intake_time_subheading">섭취 시간</string>
+    <string name="add_pill_intake_time_init_count">1회</string>
     <string name="add_pill_default_alarm_am_pm">오전</string>
     <string name="add_pill_default_alarm_time">8:00</string>
     <string name="add_pill_repetition_subheading">반복</string>

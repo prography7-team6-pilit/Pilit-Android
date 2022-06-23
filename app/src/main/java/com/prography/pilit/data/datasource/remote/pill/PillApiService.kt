@@ -1,5 +1,4 @@
 package com.prography.pilit.data.datasource.remote.pill
-import retrofit2.Response
 import retrofit2.http.*
 
 interface PillApiService {
@@ -14,11 +13,11 @@ interface PillApiService {
     suspend fun requestAlert(@Query("year") year: Int, @Query("month") month: Int, @Query("day") day: Int): AlertResponse
 
     @POST("/api/v1/pill-alerts")
-    suspend fun requestAddAlert(@Body body:AddAlertRequest): Response<AddAlertResponse>
+    suspend fun requestAddAlert(@Body body:AddAlertRequest): AddAlertResponse
 
     @PUT("/api/v1/pill-alerts/{alertId}")
-    suspend fun requestEditAlert(@Path("alertId") alertId: Int, @Body body:AddAlertRequest): Response<AddAlertResponse>
+    suspend fun requestEditAlert(@Path("alertId") alertId: Int, @Body body:AddAlertRequest): AddAlertResponse
 
     @DELETE("/api/v1/pill-alerts/{alertId}")
-    suspend fun requestDeleteAlert(@Path("alertId") alertId: Int): Response<DeleteResponse>
+    suspend fun requestDeleteAlert(@Path("alertId") alertId: Int): DeleteResponse
 }

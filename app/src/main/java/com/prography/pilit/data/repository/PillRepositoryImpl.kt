@@ -4,7 +4,6 @@ import com.prography.pilit.data.datasource.remote.pill.*
 import com.prography.pilit.data.mapper.toPill
 import com.prography.pilit.domain.model.Pill
 import com.prography.pilit.domain.repository.PillRepository
-import retrofit2.Response
 import javax.inject.Inject
 
 class PillRepositoryImpl @Inject constructor(
@@ -19,12 +18,12 @@ class PillRepositoryImpl @Inject constructor(
     override suspend fun postTakingLogs(request: EatRequest): Boolean =
         pillApiService.postTakingLogs(request).result
 
-    override suspend fun requestAddAlert(body:AddAlertRequest): Response<AddAlertResponse> =
+    override suspend fun requestAddAlert(body:AddAlertRequest): AddAlertResponse =
         pillApiService.requestAddAlert(body)
 
-    override suspend fun requestEditAlert(alertId: Int, body:AddAlertRequest): Response<AddAlertResponse> =
+    override suspend fun requestEditAlert(alertId: Int, body:AddAlertRequest): AddAlertResponse =
         pillApiService.requestEditAlert(alertId, body)
 
-    override suspend fun requestDeleteAlert(alertId: Int): Response<DeleteResponse> =
+    override suspend fun requestDeleteAlert(alertId: Int): DeleteResponse =
         pillApiService.requestDeleteAlert(alertId)
 }

@@ -14,11 +14,12 @@ class EditPillViewModel @Inject constructor(
     private val requestEditAlertUseCase: RequestEditAlertUseCase
 ) : ViewModel() {
 
+    var dosage = 1
     val editAlertSuccess: MutableLiveData<Boolean> = MutableLiveData()
 
     fun requestEditAlert(alertId: Int, body: AddAlertRequest) = viewModelScope.launch {
         val response = requestEditAlertUseCase(alertId = alertId, body = body)
-        if(response.isSuccessful){
+        if(response.result){
             editAlertSuccess.postValue(true)
         }
         else{
