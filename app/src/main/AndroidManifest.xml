@@ -4,13 +4,13 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <meta-data
         android:name="com.google.firebase.messaging.default_notification_icon"
-        android:resource="@drawable/ic_pilit_logo_outlined_white" />
+        android:resource="@drawable/ic_pill_normal_30" />
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher_pillit"
+        android:icon="@mipmap/ic_launcher_pilit"
         android:label="@string/app_name"
         android:name=".PilitApplication"
-        android:roundIcon="@mipmap/ic_launcher_pillit_round"
+        android:roundIcon="@mipmap/ic_launcher_pilit_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Pilit">
         <activity

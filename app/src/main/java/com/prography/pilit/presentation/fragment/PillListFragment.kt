@@ -42,7 +42,6 @@ class PillListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setInitUserInformation()
         setPillListAdapter()
         setAddPillButtonClickListener()
@@ -51,7 +50,13 @@ class PillListFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        activity?.window?.statusBarColor = activity!!.getColor(R.color.background_orange)
         setAlertData()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        activity?.window?.statusBarColor = activity!!.getColor(R.color.transparent)
     }
 
     override fun onDestroy() {

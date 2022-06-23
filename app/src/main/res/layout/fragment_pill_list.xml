@@ -18,7 +18,8 @@
     
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/background_orange">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -29,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{nickname}"
-                android:textColor="@color/red_500"
+                android:textColor="@color/orange_500"
                 android:textSize="24dp"
                 android:textStyle="bold"
                 android:layout_marginTop="50dp"
@@ -78,7 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{Integer.toString(pillCount)}"
-                android:textColor="@color/red_500"
+                android:textColor="@color/orange_500"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 app:layout_constraintTop_toTopOf="@id/tv_pill_list_today_pill_message_1"
