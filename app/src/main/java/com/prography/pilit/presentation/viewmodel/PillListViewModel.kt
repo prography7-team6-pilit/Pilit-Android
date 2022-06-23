@@ -37,7 +37,7 @@ class PillListViewModel @Inject constructor(
 
     fun requestDeleteAlert(alertId: Int) = viewModelScope.launch {
         val response = requestDeleteAlertUseCase(alertId = alertId)
-        if(response.isSuccessful){
+        if(response.result){
             deleteAlertSuccess.postValue(true)
         }
         else{

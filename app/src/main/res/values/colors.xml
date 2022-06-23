@@ -14,6 +14,7 @@
 
     <!-- textview colors -->
     <color name="add_pill_medicine_information_text">#80000000</color>
+    <color name="add_pill_confirm_text">#3478FF</color>
 
     <!-- button colors -->
     <color name="button_enable_false">#66FF5D5D</color>

@@ -64,6 +64,11 @@ class EditPillActivity : AppCompatActivity() {
         })
     }
 
+    private fun getAlertTime(): List<String> {
+        val alertTime = mutableListOf<String>()
+        return alertTime
+    }
+
     fun getCheckedDay():List<Week>{
         val alertWeek:MutableList<Week> = mutableListOf()
         if(binding.cbEditPillRepetitionOptionSun.isChecked) alertWeek.add(Week.Sun)
@@ -92,12 +97,14 @@ class EditPillActivity : AppCompatActivity() {
 
     fun setCompleteButtonClickListener(){
         binding.btnEditPillComplete.setOnClickListener {
-            var alertTime = alertTime24
-            var alertWeek = getCheckedDay()
+            val alertTime = getAlertTime()
+            val alertWeek = getCheckedDay()
             val isPush = binding.switchEditPillPush.isChecked
+            val dosage = viewModel.dosage
             val pillName = binding.etEditPillMedicineName.text.toString()
-            val body = AddAlertRequest(alertTime, alertWeek, isPush, pillName)
-            viewModel.requestEditAlert(alertId = pillData.alertId, body = body)
+            val body = AddAlertRequest(alertTime = alertTime, alertWeek = alertWeek, isPush = isPush, dosage = dosage, pillName = pillName)
+            // todo alertId
+            //viewModel.requestEditAlert(alertId = alertId, body = body)
             viewModel.editAlertSuccess.observe(this){
                 if(it) this.finish()
             }
