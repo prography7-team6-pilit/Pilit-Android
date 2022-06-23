@@ -9,6 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.prography.pilit.R
 import com.prography.pilit.data.datasource.remote.pill.AddAlertRequest
 import com.prography.pilit.databinding.FragmentAddPillBinding
@@ -108,8 +111,8 @@ class AddPillFragment : Fragment() {
 
     fun setCompleteButtonClickListener(){
         binding.btnAddPillComplete.setOnClickListener {
-            var alertTime = alertTime24
-            var alertWeek = getCheckedDay()
+            val alertTime = alertTime24
+            val alertWeek = getCheckedDay()
             val isPush = binding.switchAddPillPush.isChecked
             val pillName = binding.etAddPillMedicineName.text.toString()
             val body = AddAlertRequest(alertTime, alertWeek, isPush, pillName)
@@ -117,7 +120,7 @@ class AddPillFragment : Fragment() {
             viewModel.addAlertSuccess.observe(viewLifecycleOwner){
                 if(it) {
                     initAddPillView()
-                    (requireActivity() as MainActivity).moveToFragment(0)
+                    (requireActivity() as MainActivity).moveToFragment(R.id.pillListFragment)
                 }
             }
         }

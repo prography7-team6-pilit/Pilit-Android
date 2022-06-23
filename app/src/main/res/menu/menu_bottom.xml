@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/item_pill_list"
+        android:id="@+id/pillListFragment"
         android:icon="@drawable/selector_menu_icon_pill_list"
         android:title="@string/menu_pill_list" />
     <item
-        android:id="@+id/item_pill_add"
+        android:id="@+id/addPillFragment"
         android:icon="@drawable/selector_menu_icon_pill_add"
         android:title="@string/menu_pill_add" />
     <item
-        android:id="@+id/item_calendar"
+        android:id="@+id/calendarFragment"
         android:icon="@drawable/selector_menu_icon_calender"
         android:title="@string/menu_calendar" />
 </menu>
