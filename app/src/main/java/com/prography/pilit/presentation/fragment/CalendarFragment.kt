@@ -220,7 +220,8 @@ class CalendarFragment : Fragment() {
         }
 
         binding.layoutEmpty.btnAddAlert.setOnClickListener {
-            (requireActivity() as MainActivity).moveToFragment(1)
+
+            (requireActivity() as MainActivity).moveToFragment(R.id.addPillFragment)
         }
 
         viewModel.alertListData.observe(viewLifecycleOwner) {
