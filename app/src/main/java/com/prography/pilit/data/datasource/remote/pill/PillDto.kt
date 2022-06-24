@@ -57,6 +57,8 @@ data class Alert(
     val isPush: Boolean,
     @SerializedName("pillName")
     val pillName: String,
+    @SerializedName("dosage")
+    val dosage: Int,
     @SerializedName("eatId")
     val eatId: Int,
     @SerializedName("eatResult")

@@ -9,6 +9,8 @@ import com.prography.pilit.data.datasource.remote.pill.AddAlertRequest
 import com.prography.pilit.domain.usecase.RequestAddAlertUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -43,7 +45,14 @@ class AddPillViewModel @Inject constructor(
                 _intakeTimeList.value = _intakeTimeList.value?.take(size)?.toMutableList()
             }
             else{
-                while (it.size != size) _intakeTimeList.value?.add("08:00")
+                for (i in it.size until size) {
+                    val cal = Calendar.getInstance()
+                    val dataFormat = SimpleDateFormat("HH:mm")
+                    val prevDate = dataFormat.parse(it[i-1])
+                    cal.time = prevDate
+                    cal.add(Calendar.HOUR_OF_DAY, 1)
+                    _intakeTimeList.value?.add(dataFormat.format(cal.time))
+                }
             }
         }
     }

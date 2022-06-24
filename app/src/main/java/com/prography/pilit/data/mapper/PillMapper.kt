@@ -10,6 +10,7 @@ fun Alert.toPill(): Pill {
         alertTime = alertTime,
         alertWeek = alertWeek,
         isPush = isPush,
+        dosage = dosage,
         eatId = eatId,
         isEaten = eatResult
     )

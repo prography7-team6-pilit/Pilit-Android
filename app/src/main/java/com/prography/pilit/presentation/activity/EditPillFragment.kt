@@ -1,4 +1,4 @@
-package com.prography.pilit.presentation.fragment
+package com.prography.pilit.presentation.activity
 
 import android.app.TimePickerDialog
 import android.os.Bundle
@@ -10,114 +10,110 @@ import android.text.style.UnderlineSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
 import android.widget.NumberPicker
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.prography.pilit.R
-import com.prography.pilit.data.datasource.remote.Resource
 import com.prography.pilit.data.datasource.remote.pill.AddAlertRequest
-import com.prography.pilit.databinding.FragmentAddPillBinding
+import com.prography.pilit.databinding.FragmentEditPillBinding
 import com.prography.pilit.domain.model.Week
-import com.prography.pilit.presentation.activity.MainActivity
 import com.prography.pilit.presentation.adapter.IntakeTimeListAdapter
-import com.prography.pilit.presentation.viewmodel.AddPillViewModel
+import com.prography.pilit.presentation.viewmodel.EditPillViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
 
 @AndroidEntryPoint
-class AddPillFragment : Fragment() {
+class EditPillFragment : Fragment() {
 
-    private var _binding: FragmentAddPillBinding? = null
+    private var _binding: FragmentEditPillBinding? = null
     private val binding get() = _binding!!
-    private val viewModel by viewModels<AddPillViewModel>()
-    lateinit var weekList: List<CheckBox>
+    private val viewModel by viewModels<EditPillViewModel>()
+    private val args by navArgs<EditPillFragmentArgs>()
     private val intakeTimeListAdapter by lazy { IntakeTimeListAdapter(this::setAlertTimeClicked) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentAddPillBinding.inflate(inflater, container, false)
+        _binding = FragmentEditPillBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initAddPillView()
+        initEditPillView()
         setDosage()
         setAlertCount()
         setIntakeTimeAdapter()
+        setBackButtonClickListener()
         setIntakeTimeCountClickListener()
         setCompleteButtonActivation()
         setCompleteButtonClickListener()
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.initDosage()
-        viewModel.initIntakeCount()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
-
-    private fun initAddPillView() {
-        weekList = listOf(
-            binding.cbAddPillRepetitionOptionSun,
-            binding.cbAddPillRepetitionOptionMon,
-            binding.cbAddPillRepetitionOptionTue,
-            binding.cbAddPillRepetitionOptionWed,
-            binding.cbAddPillRepetitionOptionThu,
-            binding.cbAddPillRepetitionOptionFri,
-            binding.cbAddPillRepetitionOptionSat
+    private fun initEditPillView(){
+        binding.pill = args.pillData
+        viewModel.initDosage(initDosage = args.pillData.dosage)
+        viewModel.initIntakeTime(
+            initIntakeCount = args.pillData.alertTime.count(),
+            initIntakeTimeList = args.pillData.alertTime
         )
+    }
 
-        binding.etAddPillMedicineName.text = Editable.Factory.getInstance().newEditable("")
-        binding.switchAddPillPush.isChecked = true
-        weekList.forEach { it.isChecked = true }
+    private fun setCompleteButtonActivation() {
+        binding.etEditPillMedicineName.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable?) {
+                when {
+                    s.toString().trim().isEmpty() -> {
+                        binding.btnEditPillComplete.isEnabled = false
+                    }
+                    else -> {
+                        binding.btnEditPillComplete.isEnabled = true
+                    }
+                }
+            }
+        })
     }
 
     private fun setDosage(){
         viewModel.dosage.observe(viewLifecycleOwner){
-            binding.tvAddPillIntakeAmountCount.text = it.toString()
+            binding.tvEditPillIntakeAmountCount.text = it.toString()
         }
 
-        binding.btnAddPillIntakeAmountSmaller.setOnClickListener {
+        binding.btnEditPillIntakeAmountSmaller.setOnClickListener {
             if(viewModel.dosage.value!! > 1) viewModel.minusDosage()
         }
 
-        binding.btnAddPillIntakeAmountBigger.setOnClickListener {
+        binding.btnEditPillIntakeAmountBigger.setOnClickListener {
             if(viewModel.dosage.value!! < 10) viewModel.plusDosage()
         }
     }
 
     private fun setAlertCount(){
         viewModel.intakeCount.observe(viewLifecycleOwner){
-            binding.tvAddPillIntakeTimeCount.text = it.toString() + getString(R.string.count)
-            val intakeTimeSpan = binding.tvAddPillIntakeTimeCount.text as Spannable
-            intakeTimeSpan.setSpan(UnderlineSpan(), 0, binding.tvAddPillIntakeTimeCount.text.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            binding.tvEditPillIntakeTimeCount.text = it.toString() + getString(R.string.count)
+            val intakeTimeSpan = binding.tvEditPillIntakeTimeCount.text as Spannable
+            intakeTimeSpan.setSpan(UnderlineSpan(), 0, binding.tvEditPillIntakeTimeCount.text.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         }
     }
 
     private fun setIntakeTimeAdapter(){
-        binding.rvAddPillIntakeTime.adapter = intakeTimeListAdapter
+        binding.rvEditPillIntakeTime.adapter = intakeTimeListAdapter
         viewModel.intakeTimeList.observe(viewLifecycleOwner){
             intakeTimeListAdapter.submitList(it)
         }
     }
 
     private fun setAlertTimeClicked(index: Int){
-       val originTime = viewModel.intakeTimeList.value!![index].split(":")
+        val originTime = viewModel.intakeTimeList.value!![index].split(":")
         TimePickerDialog(requireActivity(), { _, hour, minute ->
             val cal = Calendar.getInstance()
             cal.set(Calendar.HOUR_OF_DAY, hour)
@@ -128,7 +124,7 @@ class AddPillFragment : Fragment() {
     }
 
     private fun setIntakeTimeCountClickListener(){
-        binding.tvAddPillIntakeTimeCount.setOnClickListener {
+        binding.tvEditPillIntakeTimeCount.setOnClickListener {
             val numberPickerLayout = layoutInflater.inflate(R.layout.dialog_number_picker,null)
             val numberPicker = numberPickerLayout.findViewById<NumberPicker>(R.id.number_picker)
             val numberPickerArray = Array(10) { (it + 1).toString() }
@@ -156,50 +152,50 @@ class AddPillFragment : Fragment() {
         }
     }
 
-    private fun setCompleteButtonActivation() {
-        binding.etAddPillMedicineName.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-            override fun afterTextChanged(s: Editable?) {
-                when {
-                    s.toString().trim().isEmpty() -> {
-                        binding.btnAddPillComplete.isEnabled = false
-                    }
-                    else -> {
-                        binding.btnAddPillComplete.isEnabled = true
-                    }
-                }
-            }
-        })
-    }
 
     private fun getCheckedDay(): List<Week> {
         val alertWeek = mutableListOf<Week>()
-        weekList.forEachIndexed { index, checkBox -> if (checkBox.isChecked) alertWeek.add(Week.values()[index]) }
-        return alertWeek
+        val weekList = listOf(
+            binding.cbEditPillRepetitionOptionSun,
+            binding.cbEditPillRepetitionOptionMon,
+            binding.cbEditPillRepetitionOptionTue,
+            binding.cbEditPillRepetitionOptionWed,
+            binding.cbEditPillRepetitionOptionThu,
+            binding.cbEditPillRepetitionOptionFri,
+            binding.cbEditPillRepetitionOptionSat
+        )
+
+        weekList.forEachIndexed { index, checkBox ->
+            if (checkBox.isChecked) alertWeek.add(Week.values()[index])
+        }
+
+        return alertWeek.toList()
     }
 
     private fun setCompleteButtonClickListener() {
-        binding.btnAddPillComplete.setOnClickListener {
+        binding.btnEditPillComplete.setOnClickListener {
             val alertTime = viewModel.intakeTimeList.value?.toList()
             val alertWeek = getCheckedDay()
-            val isPush = binding.switchAddPillPush.isChecked
+            val isPush = binding.switchEditPillPush.isChecked
             val dosage = viewModel.dosage.value
-            val pillName = binding.etAddPillMedicineName.text.toString()
-            val body = AddAlertRequest(alertTime = alertTime, alertWeek = alertWeek, isPush = isPush, dosage = dosage!!, pillName = pillName)
-            viewModel.requestAddAlert(body = body)
-            viewModel.addAlertSuccess.observe(viewLifecycleOwner) {
-                when(it){
-                    is Resource.Success -> {
-                        initAddPillView()
-                        (requireActivity() as MainActivity).moveToFragment(R.id.pillListFragment)
-                    }
-                    is Resource.Error -> {
-
-                    }
-                    else -> {}
-                }
+            val pillName = binding.etEditPillMedicineName.text.toString()
+            val body = AddAlertRequest(
+                alertTime = alertTime,
+                alertWeek = alertWeek,
+                isPush = isPush,
+                dosage = dosage,
+                pillName = pillName
+            )
+            viewModel.requestEditAlert(alertId = args.pillData.alertId, body = body)
+            viewModel.editAlertSuccess.observe(viewLifecycleOwner) {
+                findNavController().navigateUp()
             }
+        }
+    }
+
+    private fun setBackButtonClickListener() {
+        binding.ivEditPillBack.setOnClickListener {
+            findNavController().navigateUp()
         }
     }
 }
