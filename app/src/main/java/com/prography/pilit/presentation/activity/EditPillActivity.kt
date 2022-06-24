@@ -31,7 +31,6 @@ class EditPillActivity : AppCompatActivity() {
         val intent = intent
         pillData = intent.getParcelableExtra("pillData")!!
         binding.pill = pillData
-        alertTime24 = convert12hourTo24hour(pillData.am_pm, pillData.alertTime)
 
         setBackButtonClickListener()
         setCompleteButtonActivation()
@@ -64,7 +63,7 @@ class EditPillActivity : AppCompatActivity() {
         })
     }
 
-    fun getCheckedDay():List<Week>{
+    private fun getCheckedDay():List<Week>{
         val alertWeek:MutableList<Week> = mutableListOf()
         if(binding.cbEditPillRepetitionOptionSun.isChecked) alertWeek.add(Week.Sun)
         if(binding.cbEditPillRepetitionOptionMon.isChecked) alertWeek.add(Week.Mon)
@@ -76,7 +75,7 @@ class EditPillActivity : AppCompatActivity() {
         return alertWeek.toList()
     }
 
-    fun setTimeSettingButtonClickListener(){
+    private fun setTimeSettingButtonClickListener(){
         binding.ivEditPillIntakeTimeSetting.setOnClickListener {
             val originTime = alertTime24.split(":")
             TimePickerDialog(this, { view, hour, minute ->
@@ -90,7 +89,7 @@ class EditPillActivity : AppCompatActivity() {
         }
     }
 
-    fun setCompleteButtonClickListener(){
+    private fun setCompleteButtonClickListener(){
         binding.btnEditPillComplete.setOnClickListener {
             var alertTime = alertTime24
             var alertWeek = getCheckedDay()
@@ -104,7 +103,7 @@ class EditPillActivity : AppCompatActivity() {
         }
     }
 
-    fun setBackButtonClickListener(){
+    private fun setBackButtonClickListener(){
         binding.ivEditPillBack.setOnClickListener {
             this.finish()
         }

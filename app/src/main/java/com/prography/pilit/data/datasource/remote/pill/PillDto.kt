@@ -50,7 +50,7 @@ data class Alert(
     @SerializedName("alertId")
     val alertId: Int,
     @SerializedName("alertTime")
-    val alertTime: String,
+    val alertTime: List<String>,
     @SerializedName("alertWeek")
     val alertWeek: List<Week>,
     @SerializedName("isPush")
