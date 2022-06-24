@@ -19,8 +19,8 @@ class JoinActivity : AppCompatActivity() {
     private val viewModel by viewModels<JoinViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.Theme_Pilit)
         super.onCreate(savedInstanceState)
-
         binding = ActivityJoinBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
