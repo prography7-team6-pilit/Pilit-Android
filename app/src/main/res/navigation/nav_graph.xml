@@ -43,7 +43,7 @@
 
     <fragment
         android:id="@+id/editPillActivity"
-        android:name="com.prography.pilit.presentation.activity.EditPillFragment"
+        android:name="com.prography.pilit.presentation.fragment.EditPillFragment"
         android:label="activity_edit_pill"
         tools:layout="@layout/fragment_edit_pill" >
         <argument

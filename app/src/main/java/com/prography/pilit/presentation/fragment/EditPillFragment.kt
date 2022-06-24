@@ -1,4 +1,4 @@
-package com.prography.pilit.presentation.activity
+package com.prography.pilit.presentation.fragment
 
 import android.app.TimePickerDialog
 import android.os.Bundle
@@ -55,6 +55,11 @@ class EditPillFragment : Fragment() {
         setIntakeTimeCountClickListener()
         setCompleteButtonActivation()
         setCompleteButtonClickListener()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
     private fun initEditPillView(){
