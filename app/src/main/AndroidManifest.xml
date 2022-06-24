@@ -13,7 +13,6 @@
         android:roundIcon="@mipmap/ic_launcher_pilit_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Pilit">
-        <!--Splash Activity-->
         <activity android:name=".presentation.activity.SplashActivity"
             android:theme="@style/SplashTheme"
             android:exported="true">
