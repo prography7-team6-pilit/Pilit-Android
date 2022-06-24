@@ -192,7 +192,7 @@ class AddPillFragment : Fragment() {
                 when(it){
                     is Resource.Success -> {
                         initAddPillView()
-                        (requireActivity() as MainActivity).moveToFragment(R.id.pillListFragment)
+                        (requireActivity() as MainActivity).moveToFragment(0)
                     }
                     is Resource.Error -> {
 
