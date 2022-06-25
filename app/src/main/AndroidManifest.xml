@@ -13,13 +13,17 @@
         android:roundIcon="@mipmap/ic_launcher_pilit_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Pilit">
+        <activity android:name=".presentation.activity.SplashActivity"
+            android:theme="@style/SplashTheme"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
         <activity
             android:name=".presentation.activity.JoinActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".presentation.activity.MainActivity"
             android:windowSoftInputMode="adjustPan"/>
