@@ -2,7 +2,6 @@ package com.prography.pilit.domain.repository
 
 import com.prography.pilit.data.datasource.remote.pill.*
 import com.prography.pilit.domain.model.Pill
-import retrofit2.Response
 
 interface PillRepository {
 
@@ -12,9 +11,9 @@ interface PillRepository {
 
     suspend fun postTakingLogs(request: EatRequest): Boolean
 
-    suspend fun requestAddAlert(body:AddAlertRequest): Response<AddAlertResponse>
+    suspend fun requestAddAlert(body:AddAlertRequest): AddAlertResponse
 
-    suspend fun requestEditAlert(alertId: Int, body: AddAlertRequest): Response<AddAlertResponse>
+    suspend fun requestEditAlert(alertId: Int, body: AddAlertRequest): AddAlertResponse
 
-    suspend fun requestDeleteAlert(alertId: Int): Response<DeleteResponse>
+    suspend fun requestDeleteAlert(alertId: Int): DeleteResponse
 }

@@ -1,20 +1,16 @@
 package com.prography.pilit.presentation.fragment
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import com.prography.pilit.PilitApplication
 import com.prography.pilit.R
 import com.prography.pilit.databinding.FragmentPillListBinding
 import com.prography.pilit.domain.model.Pill
-import com.prography.pilit.presentation.activity.EditPillActivity
 import com.prography.pilit.presentation.activity.MainActivity
 import com.prography.pilit.presentation.adapter.PillListAdapter
 import com.prography.pilit.presentation.viewmodel.PillListViewModel
@@ -90,7 +86,7 @@ class PillListFragment : Fragment() {
         viewModel.alertListData.observe(viewLifecycleOwner){
             binding.pillCount = it.size
             if(it.isNotEmpty()){
-                pillListAdapter.submitList(it)
+                pillListAdapter.submitList(it.sortedBy { alert -> alert.alertId })
             }
         }
     }
@@ -105,9 +101,8 @@ class PillListFragment : Fragment() {
     private fun pillOption(pillData: Pill, selectedMenuNum: Int) {
         when(selectedMenuNum){
             0 -> { // 수정
-                val intent = Intent(requireContext(), EditPillActivity::class.java)
-                intent.putExtra("pillData", pillData)
-                startActivity(intent)
+                Navigation.findNavController(requireView()).navigate(
+                    PillListFragmentDirections.actionPillListFragmentToEditPillActivity(pillData = pillData))
             }
             1 -> { // 삭제
                 viewModel.requestDeleteAlert(alertId = pillData.alertId)

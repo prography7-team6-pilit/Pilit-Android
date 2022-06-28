@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/pillListFragment">
+
     <fragment
         android:id="@+id/calendarFragment"
         android:name="com.prography.pilit.presentation.fragment.CalendarFragment"
@@ -13,6 +14,7 @@
             android:id="@+id/action_calendarFragment_to_addPillFragment"
             app:destination="@id/addPillFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/pillListFragment"
         android:name="com.prography.pilit.presentation.fragment.PillListFragment"
@@ -25,6 +27,7 @@
             android:id="@+id/action_pillListFragment_to_editPillActivity"
             app:destination="@id/editPillActivity" />
     </fragment>
+
     <fragment
         android:id="@+id/addPillFragment"
         android:name="com.prography.pilit.presentation.fragment.AddPillFragment"
@@ -37,9 +40,14 @@
             android:id="@+id/action_addPillFragment_to_pillListFragment"
             app:destination="@id/pillListFragment" />
     </fragment>
-    <activity
+
+    <fragment
         android:id="@+id/editPillActivity"
-        android:name="com.prography.pilit.presentation.activity.EditPillActivity"
+        android:name="com.prography.pilit.presentation.fragment.EditPillFragment"
         android:label="activity_edit_pill"
-        tools:layout="@layout/activity_edit_pill" />
+        tools:layout="@layout/fragment_edit_pill" >
+        <argument
+            android:name="pillData"
+            app:argType="com.prography.pilit.domain.model.Pill" />
+    </fragment>
 </navigation>

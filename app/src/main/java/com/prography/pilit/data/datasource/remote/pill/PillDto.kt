@@ -25,20 +25,20 @@ data class DeleteResponse(
 
 data class AddAlertRequest(
     @SerializedName("alertTime")
-    val alertTime: String,
+    val alertTime: List<String>?,
     @SerializedName("alertWeek")
-    val alertWeek: List<Week>,
+    val alertWeek: List<Week>?,
     @SerializedName("isPush")
-    val isPush: Boolean,
+    val isPush: Boolean?,
+    @SerializedName("dosage")
+    val dosage: Int?,
     @SerializedName("pillName")
-    val pillName: String
+    val pillName: String?
 )
 
 data class AddAlertResponse(
     @SerializedName("result")
-    val result: Boolean,
-    @SerializedName("error")
-    val error: String
+    val result: Boolean
 )
 
 data class AlertResponse(
@@ -57,6 +57,8 @@ data class Alert(
     val isPush: Boolean,
     @SerializedName("pillName")
     val pillName: String,
+    @SerializedName("dosage")
+    val dosage: Int,
     @SerializedName("eatId")
     val eatId: Int,
     @SerializedName("eatResult")
