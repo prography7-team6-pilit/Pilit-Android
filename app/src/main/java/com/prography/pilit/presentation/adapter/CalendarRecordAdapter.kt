@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.prography.pilit.R
 import com.prography.pilit.databinding.ItemCalendarRecordBinding
 import com.prography.pilit.domain.model.Pill
+import com.prography.pilit.extension.toStringWithComma
 
 class CalendarRecordAdapter(
     private val onPillClicked: (alertId: Int) -> Unit
@@ -33,6 +34,7 @@ class CalendarRecordAdapter(
     ): RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Pill) {
             binding.pill = item
+            binding.alertTime = item.alertTime.toStringWithComma()
             binding.btnEat.setOnClickListener {
                 binding.pill = item.copy(isEaten = binding.pill!!.isEaten.not())
                 onPillClicked(item.alertId)
