@@ -1,11 +1,14 @@
 package com.prography.pilit.extension
 
-import java.lang.StringBuilder
+import java.text.SimpleDateFormat
+import java.util.Locale
 
-fun List<String>.toStringWithComma() : String {
-    val builder = StringBuilder()
-    forEach {
-        builder.append("$it, ")
+fun String.toFormattedString(): String {
+    return try {
+        val format = SimpleDateFormat("hh:mm", Locale.KOREA)
+        val formatter = SimpleDateFormat("a hh:mm", Locale.KOREA)
+        formatter.format(format.parse(this) ?: throw Exception())
+    } catch (e: Exception) {
+        ""
     }
-    return builder.toString()
 }
