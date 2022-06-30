@@ -6,6 +6,9 @@
         <variable
             name="pill"
             type="com.prography.pilit.domain.model.Pill" />
+        <variable
+            name="alertTime"
+            type="String" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -26,7 +29,9 @@
             android:id="@+id/tv_intake_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{pill.alertTime}"
+            android:text="@{alertTime}"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:textColor="@color/black"
             android:textSize="12sp"
             android:layout_marginTop="6dp"

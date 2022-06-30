@@ -2,6 +2,7 @@ package com.prography.pilit.data.mapper
 
 import com.prography.pilit.data.datasource.remote.pill.Alert
 import com.prography.pilit.domain.model.Pill
+import java.lang.StringBuilder
 
 fun Alert.toPill(): Pill {
     return Pill(
@@ -15,3 +16,4 @@ fun Alert.toPill(): Pill {
         isEaten = eatResult
     )
 }
+
