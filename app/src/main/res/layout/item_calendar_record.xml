@@ -40,18 +40,19 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/btn_eat"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@{pill.eaten ? @drawable/ic_btn_pill_normal_50 : @drawable/ic_btn_pill_press_50}"
+            android:src="@{pill.eaten ? @drawable/ic_btn_pill_press_50 : @drawable/ic_btn_pill_normal_50}"
             android:background="@color/transparent"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:contentDescription="@string/description_record_eat"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

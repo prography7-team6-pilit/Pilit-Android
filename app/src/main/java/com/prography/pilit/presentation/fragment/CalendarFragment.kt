@@ -47,10 +47,10 @@ class CalendarFragment : Fragment() {
     private val binding get() = _binding ?: throw IllegalArgumentException("Must be initialized.")
     private val viewModel by viewModels<CalendarViewModel>()
 
-    private var selectedDate: LocalDate? = LocalDate.now()
+    private var selectedDate: LocalDate? = null
 
     private val adapter by lazy {
-        CalendarRecordAdapter(this::eatPill)
+        CalendarRecordAdapter()
     }
 
     private val logList: MutableList<TakeLog> = mutableListOf()
@@ -107,8 +107,6 @@ class CalendarFragment : Fragment() {
             val legendLayout = ItemCalendarHeaderBinding.bind(view).legendLayout.root
         }
 
-
-
         val currentMonth = YearMonth.now()
         val firstMonth = currentMonth.minusMonths(10)
         val lastMonth = currentMonth.plusMonths(10)
@@ -116,8 +114,6 @@ class CalendarFragment : Fragment() {
         binding.calendarView.setup(firstMonth, lastMonth, firstDayOfWeek)
         binding.calendarView.scrollToMonth(currentMonth)
         viewModel.getMonthlyPillList(currentMonth.year, currentMonth.month.value)
-
-        //viewModel.getAlertList()
 
         binding.calendarView.dayBinder = object : DayBinder<DayViewContainer> {
             // Called only when a new container is needed.
@@ -131,10 +127,8 @@ class CalendarFragment : Fragment() {
                 container.day = day
 
                 if (day.owner == DayOwner.THIS_MONTH) {
-
                     textView.makeVisible()
                     textView.text = day.date.dayOfMonth.toString()
-
                     if (day.date == selectedDate) {
                         dotView.makeVisible()
                     } else {
@@ -147,6 +141,7 @@ class CalendarFragment : Fragment() {
                             DateTimeFormatter.ISO_DATE
                         ) == day.date
                     }
+
                     if (takeLog != null) {
                         if (takeLog.pillState == 0) {
                             textView.setBackgroundResource(R.drawable.bg_pill_part_eaten)
@@ -165,7 +160,6 @@ class CalendarFragment : Fragment() {
                 }
             }
         }
-
 
         viewModel.monthlyPillListData.observe(viewLifecycleOwner) {
             logList.clear()
@@ -201,10 +195,9 @@ class CalendarFragment : Fragment() {
                 selectedDate = null
                 binding.calendarView.notifyDateChanged(it)
                 updateAdapterForDate(null)
+                selectDate(month.yearMonth.atDay(1))
             }
-            selectDate(month.yearMonth.atDay(1))
         }
-
 
         binding.ivPreviousMonth.setOnClickListener {
             binding.calendarView.findFirstVisibleMonth()?.let {
@@ -212,15 +205,11 @@ class CalendarFragment : Fragment() {
             }
         }
 
-
-        if (savedInstanceState == null) {
-            binding.calendarView.post {
-                selectDate(LocalDate.now())
-            }
+        binding.calendarView.post {
+            selectDate(LocalDate.now())
         }
 
         binding.layoutEmpty.btnAddAlert.setOnClickListener {
-
             (requireActivity() as MainActivity).moveToFragment(R.id.addPillFragment)
         }
 
@@ -234,10 +223,7 @@ class CalendarFragment : Fragment() {
                 adapter.submitList(it)
             }
         }
-
-
     }
-
 
     private fun initRecyclerView() {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -257,16 +243,7 @@ class CalendarFragment : Fragment() {
             oldDate?.let { binding.calendarView.notifyDateChanged(it) }
             binding.calendarView.notifyDateChanged(date)
             updateAdapterForDate(date)
-            binding.tvRecordDate.text = String.format(
-                getString(R.string.calendar_record_date),
-                date.monthValue,
-                date.dayOfMonth
-            )
         }
-    }
-
-    private fun eatPill(alertId: Int) {
-        viewModel.postTakingLogs(alertId)
     }
 
     private fun updateAdapterForDate(date: LocalDate?) {
@@ -276,6 +253,10 @@ class CalendarFragment : Fragment() {
             date?.dayOfMonth ?: LocalDate.now().dayOfMonth
         )
         adapter.notifyItemRangeRemoved(0, adapter.itemCount)
+        binding.tvRecordDate.text = String.format(
+            getString(R.string.calendar_record_date),
+            date?.monthValue ?: LocalDate.now().monthValue,
+            date?.dayOfMonth ?: LocalDate.now().dayOfMonth
+        )
     }
 }
-
