@@ -10,9 +10,7 @@ import com.prography.pilit.databinding.ItemCalendarRecordBinding
 import com.prography.pilit.domain.model.Pill
 import com.prography.pilit.extension.toStringWithComma
 
-class CalendarRecordAdapter(
-    private val onPillClicked: (alertId: Int) -> Unit
-) : ListAdapter<Pill, CalendarRecordAdapter.ViewHolder>(pillComparator) {
+class CalendarRecordAdapter() : ListAdapter<Pill, CalendarRecordAdapter.ViewHolder>(pillComparator) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType:Int): ViewHolder =
         ViewHolder(
@@ -20,8 +18,7 @@ class CalendarRecordAdapter(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            ),
-            onPillClicked
+            )
         )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -30,15 +27,11 @@ class CalendarRecordAdapter(
 
     inner class ViewHolder(
         private val binding: ItemCalendarRecordBinding,
-        private val onPillClicked: (alertId: Int) -> Unit
     ): RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Pill) {
             binding.pill = item
             binding.alertTime = item.alertTime.toStringWithComma()
-            binding.btnEat.setOnClickListener {
-                binding.pill = item.copy(isEaten = binding.pill!!.isEaten.not())
-                onPillClicked(item.alertId)
-            }
+            binding.alertTime = item.alertTime.toStringWithComma()
         }
     }
 
