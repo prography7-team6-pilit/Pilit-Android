@@ -143,7 +143,7 @@ class CalendarFragment : Fragment() {
                     }
 
                     if (takeLog != null) {
-                        if (takeLog.pillState == 0) {
+                        if (takeLog.pillState == 1) {
                             textView.setBackgroundResource(R.drawable.bg_pill_part_eaten)
                             textView.setTextColorRes(R.color.black)
                         } else {
