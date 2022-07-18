@@ -38,20 +38,20 @@ class PillListAdapter(
             currentTime.time = Date()
             currentTime.add(Calendar.MINUTE, -30)
             val currentDate = Date(currentTime.timeInMillis)
-            val currentDateFormat = SimpleDateFormat("HH:mm").format(currentDate)
-            val currentDateConvert = SimpleDateFormat("HH:mm").parse(currentDateFormat)
+            val currentDateFormat = SimpleDateFormat("HH:mm", Locale.KOREA).format(currentDate)
+            val currentDateConvert = SimpleDateFormat("HH:mm", Locale.KOREA).parse(currentDateFormat)
             var mainTime = item.alertTime.last()
             for (i in 0 until item.alertTime.size) {
-                val alertDateTime = SimpleDateFormat("HH:mm").parse(item.alertTime[i])
+                val alertDateTime = SimpleDateFormat("HH:mm", Locale.KOREA).parse(item.alertTime[i])
                 if (alertDateTime.after(currentDateConvert)) {
                     mainTime = item.alertTime[i]
                     break
                 }
             }
 
-            val mainTime24 = SimpleDateFormat("HH:mm").parse(mainTime)
-            val am_pm = SimpleDateFormat("a").format(mainTime24) != "오전"
-            val mainTime12 = SimpleDateFormat("hh:mm").format(mainTime24)
+            val mainTime24 = SimpleDateFormat("HH:mm", Locale.KOREA).parse(mainTime)
+            val am_pm = SimpleDateFormat("a", Locale.KOREA).format(mainTime24) != binding.root.context.getString(R.string.am)
+            val mainTime12 = SimpleDateFormat("hh:mm", Locale.KOREA).format(mainTime24)
 
             binding.pill = item
             binding.amPm = am_pm

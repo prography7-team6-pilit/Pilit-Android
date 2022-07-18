@@ -5,8 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.prography.pilit.R
 import com.prography.pilit.databinding.ItemIntakeTimeBinding
 import java.text.SimpleDateFormat
+import java.util.*
 
 class IntakeTimeListAdapter(
     private val onTimeClicked: (index: Int) -> Unit
@@ -31,9 +33,9 @@ class IntakeTimeListAdapter(
         private val onTimeClicked: (index: Int) -> Unit
     ): RecyclerView.ViewHolder(binding.root) {
         fun bind(intakeTime: String, position: Int) {
-            val alertTime24 = SimpleDateFormat("HH:mm").parse(intakeTime)
-            val am_pm = SimpleDateFormat("a").format(alertTime24) != "오전"
-            val alertTime12 = SimpleDateFormat("hh:mm").format(alertTime24)
+            val alertTime24 = SimpleDateFormat("HH:mm", Locale.KOREA).parse(intakeTime)
+            val am_pm = SimpleDateFormat("a", Locale.KOREA).format(alertTime24) != binding.root.context.getString(R.string.am)
+            val alertTime12 = SimpleDateFormat("hh:mm", Locale.KOREA).format(alertTime24)
             binding.amPm = am_pm
             binding.intakeTime = alertTime12
             binding.ivAddPillIntakeTimeSetting.setOnClickListener {

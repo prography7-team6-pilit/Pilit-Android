@@ -47,7 +47,7 @@ class AddPillViewModel @Inject constructor(
             else{
                 for (i in it.size until size) {
                     val cal = Calendar.getInstance()
-                    val dataFormat = SimpleDateFormat("HH:mm")
+                    val dataFormat = SimpleDateFormat("HH:mm",Locale.KOREA)
                     val prevDate = dataFormat.parse(it[i-1])
                     cal.time = prevDate
                     cal.add(Calendar.HOUR_OF_DAY, 1)

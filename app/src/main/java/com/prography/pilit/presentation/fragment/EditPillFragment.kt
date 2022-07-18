@@ -123,7 +123,7 @@ class EditPillFragment : Fragment() {
             val cal = Calendar.getInstance()
             cal.set(Calendar.HOUR_OF_DAY, hour)
             cal.set(Calendar.MINUTE, minute)
-            viewModel.setIntakeTime(index = index, intakeTime = SimpleDateFormat("HH:mm").format(cal.time))
+            viewModel.setIntakeTime(index = index, intakeTime = SimpleDateFormat("HH:mm", Locale.KOREA).format(cal.time))
             intakeTimeListAdapter.notifyItemChanged(index)
         }, originTime[0].toInt(), originTime[1].toInt(), false).show()
     }
