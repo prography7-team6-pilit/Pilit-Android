@@ -178,6 +178,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginHorizontal="20dp"
                 android:nestedScrollingEnabled="false"
+                android:overScrollMode="never"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintTop_toBottomOf="@id/tv_edit_pill_intake_time_subheading"
                 app:layout_constraintStart_toStartOf="parent"
@@ -197,133 +198,123 @@
                 app:layout_constraintTop_toBottomOf="@id/rv_edit_pill_intake_time"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:id="@+id/cl_edit_pill_repetition_week"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="14dp"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal"
                 app:layout_constraintTop_toBottomOf="@id/tv_edit_pill_repetition_subheading"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" >
 
                 <CheckBox
                     android:id="@+id/cb_edit_pill_repetition_option_sun"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/selector_day_checkbox"
                     android:button="@android:color/transparent"
                     android:checked="@{pill.alertWeek.contains(Week.Sun)}"
                     android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="4dp"
                     android:paddingHorizontal="14dp"
                     android:paddingVertical="10dp"
                     android:text="@string/add_pill_repetition_option_sun"
-                    android:textColor="@drawable/selector_day_checkbox_text"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:textColor="@drawable/selector_day_checkbox_text" />
 
                 <CheckBox
                     android:id="@+id/cb_edit_pill_repetition_option_mon"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/selector_day_checkbox"
                     android:button="@android:color/transparent"
                     android:checked="@{pill.alertWeek.contains(Week.Mon)}"
                     android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="4dp"
                     android:paddingHorizontal="14dp"
                     android:paddingVertical="10dp"
                     android:text="@string/add_pill_repetition_option_mon"
-                    android:textColor="@drawable/selector_day_checkbox_text"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/cb_edit_pill_repetition_option_sun"
-                    app:layout_constraintEnd_toStartOf="@+id/cb_edit_pill_repetition_option_tue" />
+                    android:textColor="@drawable/selector_day_checkbox_text" />
 
                 <CheckBox
                     android:id="@+id/cb_edit_pill_repetition_option_tue"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/selector_day_checkbox"
                     android:button="@android:color/transparent"
                     android:checked="@{pill.alertWeek.contains(Week.Tue)}"
                     android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="4dp"
                     android:paddingHorizontal="14dp"
                     android:paddingVertical="10dp"
                     android:text="@string/add_pill_repetition_option_tue"
-                    android:textColor="@drawable/selector_day_checkbox_text"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/cb_edit_pill_repetition_option_mon"
-                    app:layout_constraintEnd_toStartOf="@+id/cb_edit_pill_repetition_option_wed" />
+                    android:textColor="@drawable/selector_day_checkbox_text" />
 
                 <CheckBox
                     android:id="@+id/cb_edit_pill_repetition_option_wed"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/selector_day_checkbox"
                     android:button="@android:color/transparent"
                     android:checked="@{pill.alertWeek.contains(Week.Wed)}"
                     android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="4dp"
                     android:paddingHorizontal="14dp"
                     android:paddingVertical="10dp"
                     android:text="@string/add_pill_repetition_option_wed"
-                    android:textColor="@drawable/selector_day_checkbox_text"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/cb_edit_pill_repetition_option_tue"
-                    app:layout_constraintEnd_toStartOf="@+id/cb_edit_pill_repetition_option_thu" />
+                    android:textColor="@drawable/selector_day_checkbox_text" />
 
                 <CheckBox
                     android:id="@+id/cb_edit_pill_repetition_option_thu"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/selector_day_checkbox"
                     android:button="@android:color/transparent"
                     android:checked="@{pill.alertWeek.contains(Week.Thu)}"
                     android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="4dp"
                     android:paddingHorizontal="14dp"
                     android:paddingVertical="10dp"
                     android:text="@string/add_pill_repetition_option_thu"
-                    android:textColor="@drawable/selector_day_checkbox_text"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/cb_edit_pill_repetition_option_wed"
-                    app:layout_constraintEnd_toStartOf="@+id/cb_edit_pill_repetition_option_fri" />
+                    android:textColor="@drawable/selector_day_checkbox_text" />
 
                 <CheckBox
                     android:id="@+id/cb_edit_pill_repetition_option_fri"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/selector_day_checkbox"
                     android:button="@android:color/transparent"
                     android:checked="@{pill.alertWeek.contains(Week.Fri)}"
                     android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="4dp"
                     android:paddingHorizontal="14dp"
                     android:paddingVertical="10dp"
                     android:text="@string/add_pill_repetition_option_fri"
-                    android:textColor="@drawable/selector_day_checkbox_text"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/cb_edit_pill_repetition_option_thu"
-                    app:layout_constraintEnd_toStartOf="@+id/cb_edit_pill_repetition_option_sat" />
+                    android:textColor="@drawable/selector_day_checkbox_text" />
 
                 <CheckBox
                     android:id="@+id/cb_edit_pill_repetition_option_sat"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/selector_day_checkbox"
                     android:button="@android:color/transparent"
                     android:checked="@{pill.alertWeek.contains(Week.Sat)}"
                     android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="4dp"
                     android:paddingHorizontal="14dp"
                     android:paddingVertical="10dp"
                     android:text="@string/add_pill_repetition_option_sat"
-                    android:textColor="@drawable/selector_day_checkbox_text"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:textColor="@drawable/selector_day_checkbox_text" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tv_edit_pill_push_subheading"
