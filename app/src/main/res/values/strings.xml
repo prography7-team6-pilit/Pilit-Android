@@ -16,7 +16,7 @@
     <string name="join_nickname_error">*이미 등록된 닉네임입니다.</string>
 
     <!-- Notification -->
-    <string name="notification_channel_id">Channel</string>
+    <string name="notification_channel_id">Channel_Id</string>
     <string name="notification_channel_name">약 복용 알림</string>
 
     <!-- Pill List -->

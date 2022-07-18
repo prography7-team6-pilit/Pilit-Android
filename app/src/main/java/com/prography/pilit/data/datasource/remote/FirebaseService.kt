@@ -15,11 +15,11 @@ import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.prography.pilit.R
-import com.prography.pilit.presentation.activity.MainActivity
+import com.prography.pilit.presentation.activity.JoinActivity
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
-class FirebaseService: FirebaseMessagingService() {
+class FirebaseService : FirebaseMessagingService() {
 
     override fun onNewToken(token: String) {
         super.onNewToken(token)
@@ -27,17 +27,18 @@ class FirebaseService: FirebaseMessagingService() {
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
-        if(remoteMessage.data.isNotEmpty()) {
+        super.onMessageReceived(remoteMessage)
+        if (remoteMessage.data.isNotEmpty()) {
             val body = remoteMessage.data["body"]
             sendNotification(body)
-        }else if (remoteMessage.notification != null) {
+        } else if (remoteMessage.notification != null) {
             val body = remoteMessage.notification!!.body
             sendNotification(body)
         }
     }
 
     private fun sendNotification(body: String?) {
-        var intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, JoinActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
 
@@ -45,17 +46,22 @@ class FirebaseService: FirebaseMessagingService() {
         val CHANNEL_NAME = getString(R.string.notification_channel_name)
         val soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val notificationBuilder = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_pill_normal_30)
+            .setSmallIcon(R.drawable.ic_notification_pilit)
+            .setColor(R.color.orange_500)
             .setContentText(body)
             .setAutoCancel(true)
             .setSound(soundUri)
             .setContentIntent(pendingIntent)
-        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+        val notificationManager =
+            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(CHANNEL_ID,
+            val channel = NotificationChannel(
+                CHANNEL_ID,
                 CHANNEL_NAME,
-                NotificationManager.IMPORTANCE_DEFAULT)
+                NotificationManager.IMPORTANCE_HIGH
+            )
             notificationManager.createNotificationChannel(channel)
         }
 
@@ -64,7 +70,7 @@ class FirebaseService: FirebaseMessagingService() {
 
     suspend fun getCurrentToken() = suspendCoroutine<String> { continuation ->
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
-            if(task.isSuccessful){
+            if (task.isSuccessful) {
                 val token = task.result
                 Log.d(TAG, token)
                 continuation.resume(token)
