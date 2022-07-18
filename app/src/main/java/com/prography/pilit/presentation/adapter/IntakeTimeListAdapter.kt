@@ -38,7 +38,7 @@ class IntakeTimeListAdapter(
             val alertTime12 = SimpleDateFormat("hh:mm", Locale.KOREA).format(alertTime24)
             binding.amPm = am_pm
             binding.intakeTime = alertTime12
-            binding.ivAddPillIntakeTimeSetting.setOnClickListener {
+            binding.root.setOnClickListener {
                 onTimeClicked(position)
             }
         }
