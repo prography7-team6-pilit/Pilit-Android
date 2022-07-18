@@ -16,9 +16,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import com.prography.pilit.R
 import com.prography.pilit.data.datasource.remote.Resource
 import com.prography.pilit.data.datasource.remote.pill.AddAlertRequest
@@ -122,7 +119,7 @@ class AddPillFragment : Fragment() {
             val cal = Calendar.getInstance()
             cal.set(Calendar.HOUR_OF_DAY, hour)
             cal.set(Calendar.MINUTE, minute)
-            viewModel.setIntakeTime(index = index, intakeTime = SimpleDateFormat("HH:mm").format(cal.time))
+            viewModel.setIntakeTime(index = index, intakeTime = SimpleDateFormat("HH:mm", Locale.KOREA).format(cal.time))
             intakeTimeListAdapter.notifyItemChanged(index)
         }, originTime[0].toInt(), originTime[1].toInt(), false).show()
     }
