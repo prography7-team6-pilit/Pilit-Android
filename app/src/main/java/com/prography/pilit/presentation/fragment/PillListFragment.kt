@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
@@ -49,13 +50,13 @@ class PillListFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        activity?.window?.statusBarColor = activity!!.getColor(R.color.background_orange)
+        activity?.window?.statusBarColor = requireActivity().getColor(R.color.background_orange)
         setAlertData()
     }
 
     override fun onPause() {
         super.onPause()
-        activity?.window?.statusBarColor = activity!!.getColor(R.color.transparent)
+        activity?.window?.statusBarColor = requireActivity().getColor(R.color.transparent)
     }
 
     override fun onDestroy() {
@@ -63,29 +64,29 @@ class PillListFragment : Fragment() {
         _binding = null
     }
 
-    private fun setAddPillButtonClickListener(){
+    private fun setAddPillButtonClickListener() {
         binding.btnPillListTodayPillZeroAdd.setOnClickListener {
             (requireActivity() as MainActivity).moveToFragment(R.id.addPillFragment)
         }
     }
 
-    private fun setInitUserInformation(){
+    private fun setInitUserInformation() {
         binding.nickname = PilitApplication.preferences.nickname
     }
 
-    private fun setPillListAdapter(){
+    private fun setPillListAdapter() {
         binding.rvPillList.adapter = pillListAdapter
     }
 
-    private fun setAlertData(){
+    private fun setAlertData() {
         val currentDay = Calendar.getInstance()
         val year = currentDay.get(Calendar.YEAR)
         val month = currentDay.get(Calendar.MONTH)
         val day = currentDay.get(Calendar.DAY_OF_MONTH)
-        viewModel.getAlertList(year = year, month= month + 1, day= day)
-        viewModel.alertListData.observe(viewLifecycleOwner){
+        viewModel.getAlertList(year = year, month = month + 1, day = day)
+        viewModel.alertListData.observe(viewLifecycleOwner) {
             binding.pillCount = it.size
-            if(it.isNotEmpty()){
+            if (it.isNotEmpty()) {
                 pillListAdapter.submitList(it.sortedBy { alert -> alert.alertId })
             }
         }
@@ -93,27 +94,39 @@ class PillListFragment : Fragment() {
 
     private fun eatPill(alertId: Int) {
         viewModel.postTakingLogs(alertId)
-        viewModel.takingLogsData.observe(viewLifecycleOwner){
+        viewModel.takingLogsData.observe(viewLifecycleOwner) {
             setAlertData()
         }
     }
 
     private fun pillOption(pillData: Pill, selectedMenuNum: Int) {
-        when(selectedMenuNum){
+        when (selectedMenuNum) {
             0 -> { // 수정
                 Navigation.findNavController(requireView()).navigate(
-                    PillListFragmentDirections.actionPillListFragmentToEditPillActivity(pillData = pillData))
+                    PillListFragmentDirections.actionPillListFragmentToEditPillActivity(pillData = pillData)
+                )
             }
             1 -> { // 삭제
-                viewModel.requestDeleteAlert(alertId = pillData.alertId)
-                viewModel.deleteAlertSuccess.observe(viewLifecycleOwner){
-                    if(it) setAlertData()
-                }
+                // 다이얼로그
+                AlertDialog.Builder(requireContext()).apply {
+                    setTitle("정말로 삭제하시겠습니까?")
+                    setMessage("삭제하시면 기록을 모두 잃어버려요!")
+                    setPositiveButton("확인") { dialog, _ ->
+                        viewModel.requestDeleteAlert(alertId = pillData.alertId)
+                        viewModel.deleteAlertSuccess.observe(viewLifecycleOwner) {
+                            if (it) setAlertData()
+                        }
+                        dialog.dismiss()
+                    }
+                    setNegativeButton("취소") { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                }.create().show()
             }
         }
     }
 
-    private fun setToolTip(){
+    private fun setToolTip() {
         val balloon = Balloon.Builder(requireContext())
             .setLayout(R.layout.calendar_tooltip)
             .setArrowSize(0)

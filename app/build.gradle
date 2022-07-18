@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId "com.prography.pilit"
-        minSdk 23
+        minSdk 26
         targetSdk 32
         versionCode 1
         versionName "1.0"
