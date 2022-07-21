@@ -1,36 +1,32 @@
 package com.prography.pilit.data
 
-import com.prography.pilit.data.datasource.remote.pill.PillApiService
-import com.prography.pilit.data.datasource.remote.user.UserApiService
 import com.prography.pilit.data.datasource.remote.user.UserRemoteDataSourceImpl
 import com.prography.pilit.data.repository.PillRepositoryImpl
 import com.prography.pilit.data.repository.UserRepositoryImpl
 import com.prography.pilit.domain.datasource.remote.UserRemoteDataSource
 import com.prography.pilit.domain.repository.PillRepository
 import com.prography.pilit.domain.repository.UserRepository
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object DataLayerModule {
+abstract class DataLayerModule {
 
     // User
-    @Provides
+    @Binds
     @Singleton
-    fun provideUserRepository(remoteDataSource: UserRemoteDataSource): UserRepository = UserRepositoryImpl(remoteDataSource)
+    abstract fun bindsUserRepository(repositoryImpl: UserRepositoryImpl): UserRepository
 
-    @Provides
+    @Binds
     @Singleton
-    fun providesUserRemoteDataSource(userApiService: UserApiService): UserRemoteDataSource =
-        UserRemoteDataSourceImpl(userApiService)
+    abstract fun bindsUserRemoteDataSource(dataSourceImpl: UserRemoteDataSourceImpl): UserRemoteDataSource
 
-    @Provides
+    @Binds
     @Singleton
-    fun providesPillRepository(pillApiService: PillApiService): PillRepository =
-        PillRepositoryImpl(pillApiService)
+    abstract fun bindsPillRepository(pillRepositoryImpl: PillRepositoryImpl): PillRepository
 
 }

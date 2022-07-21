@@ -1,10 +1,6 @@
 package com.prography.pilit.data.datasource.remote
 
-sealed class Resource<T>(
-    val data: T? = null,
-    val message: String? = null
-) {
-    class Success<T>(data: T) : Resource<T>(data = data)
-    class Error<T>(errorMessage: String) : Resource<T>(message = errorMessage)
-    class Loading<T> : Resource<T>()
+sealed class Resource<out T>{
+    class Success<out T>(val data: T) : Resource<T>()
+    class Error<out T>(val errorMessage: String? = null) : Resource<T>()
 }
