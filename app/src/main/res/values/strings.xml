@@ -14,6 +14,7 @@
     <string name="join_message">만나서 반가워요!\n닉네임을 설정해볼까요?</string>
     <string name="join_nickname_hint">닉네임</string>
     <string name="join_nickname_error">*이미 등록된 닉네임입니다.</string>
+    <string name="join_nickname_empty">닉네임을 입력해주세요!</string>
 
     <!-- Notification -->
     <string name="notification_channel_id">Channel_Id</string>
