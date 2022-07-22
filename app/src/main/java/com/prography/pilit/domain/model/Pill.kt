@@ -1,8 +1,10 @@
 package com.prography.pilit.domain.model
 
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import androidx.annotation.Keep
+import kotlinx.parcelize.Parcelize
 
+@Keep
 @Parcelize
 data class Pill(
     val alertId:Int,
