@@ -22,3 +22,21 @@
 -keep class * extends androidx.fragment.app.Fragment{}
 -keepnames class * extends android.os.Parcelable
 -keepnames class * extends java.io.Serializable
+
+# Prevent proguard from stripping interface information from TypeAdapterFactory,
+# JsonSerializer, JsonDeserializer instances (so they can be used in @JsonAdapter)
+-keep class * implements com.google.gson.TypeAdapterFactory
+-keep class * implements com.google.gson.JsonSerializer
+-keep class * implements com.google.gson.JsonDeserializer
+
+-keep class com.prography.pilit.domain.model.** { *; }
+
+-dontwarn com.squareup.okhttp.**
+
+# Retrofit2
+-dontwarn retrofit2.**
+-keep class retrofit2.** { *; }
+-keepattributes Signature
+-keepattributes Exceptions
+
+-keep class com.google.gson.** { *; }
