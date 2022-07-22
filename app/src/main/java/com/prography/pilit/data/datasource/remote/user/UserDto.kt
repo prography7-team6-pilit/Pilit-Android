@@ -1,7 +1,9 @@
 package com.prography.pilit.data.datasource.remote.user
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
+@Keep
 data class UserRequest(
 
     @SerializedName("uuid")
@@ -12,6 +14,7 @@ data class UserRequest(
     val firebasetoken: String
 )
 
+@Keep
 data class UserResponse(
     @SerializedName("result")
     val result: Boolean,
