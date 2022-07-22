@@ -5,6 +5,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.prography.pilit.R
 import com.prography.pilit.databinding.ActivityMainBinding
@@ -22,7 +23,9 @@ class MainActivity : AppCompatActivity() {
         mainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mainBinding.root)
 
-        navController = Navigation.findNavController(this, R.id.nav_host)
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host) as NavHostFragment
+        navController = navHostFragment.navController
         mainBinding.bottomNavigation.setupWithNavController(navController)
         mainBinding.bottomNavigation.itemIconTintList = null
         navController.addOnDestinationChangedListener { _, destination, _ ->
